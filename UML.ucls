@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="Data.Bebida" project="Bestellenn" file="/Bestellenn/src/Data/Bebida.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="609" y="350"/>    
+    <position height="-1" width="-1" x="480" y="347"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="Data.Orden" project="Bestellenn" file="/Bestellenn/src/Data/Orden.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="992" y="160"/>    
+    <position height="-1" width="-1" x="1028" y="36"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="Data.Plato" project="Bestellenn" file="/Bestellenn/src/Data/Plato.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="838" y="335"/>    
+    <position height="-1" width="-1" x="827" y="318"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Data.Restaurante" project="Bestellenn" 
     file="/Bestellenn/src/Data/Restaurante.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="707" y="82"/>    
+    <position height="-1" width="-1" x="712" y="-45"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

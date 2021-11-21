@@ -11,7 +11,7 @@ public class LinkedList<T> {
     public LinkedList() { this.head = null; }
     // Method
     // To add node at the end of List
-    void add(T data)
+    public void add(T data)
     {
  
         // Creating new node with given value
@@ -44,7 +44,7 @@ public class LinkedList<T> {
  
     // Method
     // To add new node at any given position
-    void add(int position, T data)
+   public void add(int position, T data)
     {
  
         // Checking if position is valid
@@ -94,7 +94,7 @@ public class LinkedList<T> {
     }
     // Method
     // To remove a node from list
-    void remove(T key)
+   public void remove(T key)
     {
  
         //  NOTE
@@ -193,7 +193,7 @@ public class LinkedList<T> {
  
     // Method
     // To clear the entire LinkedList
-    void clear()
+    public void clear()
     {
  
         // Head now points to null

@@ -36,4 +36,9 @@ public class Bebida {
 		this.precio = precio;
 		this.esAlcoholica = esAlcoholica;
 	}
+	@Override
+	public String toString() {
+		return "Esta bebida se llama " + nombre + ", su descripcion es esta: " + descripcion + ", tiene un precio de " + precio + " pesos, y contiene alcohol"
+				+ esAlcoholica ;
+	}
 }
