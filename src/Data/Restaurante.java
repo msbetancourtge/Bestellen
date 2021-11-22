@@ -3,8 +3,8 @@ import Structures.*;
 public class Restaurante {
 private String nombre;
 private String direccion;
-LinkList<Plato> platos = new LinkList<>();
-LinkList<Bebida> bebidas = new LinkList<>();
+public LinkedList<Plato> platos = new LinkedList<>();
+public LinkedList<Bebida> bebidas = new LinkedList<>();
 public String getNombre() {
 	return nombre;
 	
@@ -15,22 +15,22 @@ public String getDireccion() {
 public void setDireccion(String direccion) {
 	this.direccion = direccion;
 }
-public LinkList<Plato> getPlatos() {
+public LinkedList<Plato> getPlatos() {
 	return platos;
 }
-public void setPlatos(LinkList<Plato> platos) {
+public void setPlatos(LinkedList<Plato> platos) {
 	this.platos = platos;
 }
-public LinkList<Bebida> getBebidas() {
+public LinkedList<Bebida> getBebidas() {
 	return bebidas;
 }
-public void setBebidas(LinkList<Bebida> bebidas) {
+public void setBebidas(LinkedList<Bebida> bebidas) {
 	this.bebidas = bebidas;
 }
 public void setNombre(String nombre) {
 	this.nombre = nombre;
 }
-public Restaurante(String nombre, String direccion, LinkList<Plato> platos, LinkList<Bebida> bebidas) {
+public Restaurante(String nombre, String direccion, LinkedList<Plato> platos, LinkedList<Bebida> bebidas) {
 	super();
 	this.nombre = nombre;
 	this.direccion = direccion;
@@ -50,4 +50,10 @@ public void crearBebida(String nombre, String descripcion, int precio, boolean a
 	Bebida nuevo = new Bebida(nombre, descripcion, precio, alcohol);
 	bebidas.add(nuevo);	
 }
+@Override
+public String toString() {
+	return "Este restaurante se llama " + nombre + ", y su direccion es: " + direccion;
+}
+
+
 }

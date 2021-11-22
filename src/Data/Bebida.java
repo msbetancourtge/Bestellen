@@ -38,7 +38,12 @@ public class Bebida {
 	}
 	@Override
 	public String toString() {
-		return "Esta bebida se llama " + nombre + ", su descripcion es esta: " + descripcion + ", tiene un precio de " + precio + " pesos, y contiene alcohol"
-				+ esAlcoholica ;
+		String contieneAlcohol;
+		if(esAlcoholica == true) {
+			return "Esta bebida se llama " + nombre + ", su descripcion es esta: " + descripcion + ", tiene un precio de " + precio + " pesos, y contiene alcohol" ;
+		}
+		else {
+			return "Esta bebida se llama " + nombre + ", su descripcion es esta: " + descripcion + ", tiene un precio de " + precio + " pesos, y no contiene alcohol" ;
+		}
 	}
 }

@@ -1,5 +1,7 @@
 package Structures;
 
+import Data.Restaurante;
+
 public class LinkedList<T> {
 	 
     // Generic node instance
@@ -214,8 +216,8 @@ public class LinkedList<T> {
         return false;
     }
     // Method
-    // Returning the length of LinkedList
-    int length() { return this.length; }
+    // Returning the size of LinkedList
+    public int size() { return this.length; }
  
     // Method
     // To display the LinkedList
@@ -238,5 +240,22 @@ public class LinkedList<T> {
         S += String.valueOf(X.data);
         return S + " }";
     }
+	public  T get(int i) {
+		node<T> current = head;
+	        int count = 0; /* index of Node we are
+	                          currently looking at */
+	        while (current != null)
+	        {
+	            if (count == i)
+	                return current.data;
+	            count++;
+	            current = current.next;
+	        }
+	 
+	        /* if we get to this line, the caller was asking
+	        for a non-existent element so we assert fail */
+	        assert (false);
+	        return null;
+	}
 
 }
