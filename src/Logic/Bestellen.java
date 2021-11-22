@@ -45,15 +45,17 @@ public class Bestellen {
 		System.out.println("devolverse (ingrese cualquier otro numero)");
 		opcion = entradaEscaner.nextInt();
 		if(opcion == 1) {
+			entradaEscaner.nextLine();
 			System.out.println("Ingrese el nombre del plato: ");
-			String nombreP = entradaEscaner.nextLine ();
+			String nombreP = entradaEscaner.nextLine();
 			System.out.println("Ingrese la descripción del plato: ");
-			String descripcion = entradaEscaner.nextLine ();
+			String descripcion = entradaEscaner.nextLine();
 			System.out.println("Ingrese el precio del producto: ");
 			int precio = entradaEscaner.nextInt ();
 			restaurante1.crearPlato(nombreP, descripcion, precio);
 			menuRestaurante(restaurante1);
 		}else if(opcion == 2) {
+			entradaEscaner.nextLine();
 			System.out.println("Ingrese el nombre de la bebida: ");
 			String nombreB = entradaEscaner.nextLine ();
 			System.out.println("Ingrese la descripción de la bebida: ");

@@ -33,7 +33,7 @@ public class Plato {
 	}
 	@Override
 	public String toString() {
-		return "Este plato se llama" + nombre + ", su descripcion es esta: " + descripcion + ", y su precio es de " + precio + "pesos.";
+		return "Este plato se llama " + nombre + ", su descripcion es esta: " + descripcion + ", y su precio es de " + precio + "pesos.";
 	}
 
 }
