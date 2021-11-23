@@ -1,10 +1,15 @@
 package Structures;
 
+import java.io.Serializable;
+
 import Data.Restaurante;
 
-public class LinkedList<T> {
+public class LinkedList<T extends Serializable> implements Serializable {
 	 
-    // Generic node instance
+
+	private static final long serialVersionUID = 1L;
+	
+	// Generic node instance
     node<T> head;
     // Data member to store length of list
     private int length = 0;

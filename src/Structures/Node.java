@@ -1,6 +1,8 @@
 package Structures;
 
-class node<T> {
+import java.io.Serializable;
+
+class node<T extends Serializable> implements Serializable {
 
 	// Data members
 	// 1. Storing value of node

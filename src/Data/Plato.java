@@ -1,6 +1,9 @@
 package Data;
+import java.io.Serializable;
 
-public class Plato {
+public class Plato implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String descripcion;
 	private int precio;
@@ -11,14 +14,12 @@ public class Plato {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 	public int getPrecio() {
 		return precio;
 	}
@@ -33,7 +34,7 @@ public class Plato {
 	}
 	@Override
 	public String toString() {
-		return "Este plato se llama " + nombre + ", su descripcion es esta: " + descripcion + ", y su precio es de " + precio + "pesos.";
+		return "Nombre del plato: " + nombre + '\n' + "Descripcion: " + descripcion + '\n' + "Precio: $ " + precio;
 	}
 
 }

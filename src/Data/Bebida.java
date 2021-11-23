@@ -1,6 +1,9 @@
 package Data;
+import java.io.Serializable;
 
-public class Bebida {
+public class Bebida implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String descripcion;
 	private int precio;
@@ -40,10 +43,10 @@ public class Bebida {
 	public String toString() {
 		String contieneAlcohol;
 		if(esAlcoholica == true) {
-			return "Esta bebida se llama " + nombre + ", su descripcion es esta: " + descripcion + ", tiene un precio de " + precio + " pesos, y contiene alcohol" ;
+			return "Nombre de la bebida: " + nombre + '\n' + "Descripcion: " + descripcion + '\n' + "Precio: $ " + precio + "\n***Contiene alcohol***" ;
 		}
 		else {
-			return "Esta bebida se llama " + nombre + ", su descripcion es esta: " + descripcion + ", tiene un precio de " + precio + " pesos, y no contiene alcohol" ;
+			return "Nombre de la bebida: " + nombre + '\n' + "Descripcion: " + descripcion + '\n' + "Precio: $ " + precio + " \\n***NO contiene alcohol***";
 		}
 	}
 }

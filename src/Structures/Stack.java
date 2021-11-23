@@ -1,6 +1,9 @@
-package Structures; 
-//el ultimo añadido es el primero que se saca
-public class Stack <T> {
+package Structures;
+
+import java.io.Serializable;
+
+//el ultimo aï¿½adido es el primero que se saca
+public class Stack <T extends Serializable> implements Serializable {
 	// Generic node instance
     node<T> head;
     

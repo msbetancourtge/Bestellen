@@ -7,7 +7,6 @@ LinkList<Plato> platos = new LinkList<>();
 LinkList<Bebida> bebidas = new LinkList<>();
 public String getNombre() {
 	return nombre;
-	
 }
 public String getDireccion() {
 	return direccion;

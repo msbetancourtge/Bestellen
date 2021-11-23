@@ -1,25 +1,18 @@
 package Logic;
 
 import Structures.LinkedList;
-
 import java.util.Scanner;
-
+import java.io.*;
 import Data.*;
 public class Bestellen {
 	static LinkedList<Restaurante> Restaurantes = new LinkedList<>();
-	
-	
-	
-	
-	
 	public void agregarRestaurante(String nombre, String direccion) {
 		Restaurante nuevo = new Restaurante(nombre, direccion, null, null);
 		Restaurantes.add(nuevo);
-		System.out.println("seleccione una opci髇: ");
-		System.out.println("Opcion 1: Agregar restaurante ");
-		System.out.println("Opcion 2: Ver restaurantes ");
+		System.out.println("\\\\\\\\ seleccione una opci贸n ////////");
+		System.out.println("\nOpcion 1: Agregar otro restaurante\n");
+		System.out.println("Opcion 2: Ver restaurantes agregados\n");
 	}
-	
 	public LinkedList<Restaurante> getRestaurantes() {
 		return Restaurantes;
 	}
@@ -28,43 +21,56 @@ public class Bestellen {
 	}
 	public static int menuPrincipal() {
 		Scanner entradaEscaner = new Scanner (System.in);
-		System.out.println("seleccione una opci髇: ");
-		System.out.println("Opcion 1: Agregar restaurante ");
-		System.out.println("Opcion 2: Ver restaurantes ");
+		System.out.println("\\\\\\\\\\\\\\\\ seleccione una opci贸n ////////\n");
+		System.out.println("Opcion 1: Agregar restaurante");
+		System.out.println("Opcion 2: Ver restaurantes");
+		System.out.println("Opcion 3: Salir y guardar\n");
+		
+		if (entradaEscaner.hasNextInt()) {
 		int opcion = entradaEscaner.nextInt();
-		return opcion;
+		return opcion;}
+		else { 
+			return 0;
+		}
 	}
 	public static void menuRestaurante(Restaurante restaurante1) {
+		@SuppressWarnings("resource")
 		Scanner entradaEscaner = new Scanner (System.in);
 		int opcion;
-		System.out.println("seleccione una opci髇: ");
+		System.out.println("\\\\\\\\\\\\\\\\ seleccione una opci贸n ///////\n");
 		System.out.println("Opcion 1: Agregar plato");
 		System.out.println("Opcion 2: Agregar bebida");
-		System.out.println("Opcion 3: Mostrar Menu de platos");
-		System.out.println("Opcion 4: Mostrar Menu de bebidas");
-		System.out.println("devolverse (ingrese cualquier otro numero)");
-		opcion = entradaEscaner.nextInt();
-		if(opcion == 1) {
+		System.out.println("Opcion 3: Mostrar Men煤 de platos");
+		System.out.println("Opcion 4: Mostrar Men煤 de bebidas");
+		System.out.println("Opci贸n 5: Regresar al men煤 principal");
+		if (entradaEscaner.hasNextInt()) {
+			opcion = entradaEscaner.nextInt();
+			}
+			else {opcion=0;}
+		
+		switch (opcion) {
+		case 1:{
 			entradaEscaner.nextLine();
-			System.out.println("Ingrese el nombre del plato: ");
+			System.out.println("\n--Ingrese el nombre del plato--\n");
 			String nombreP = entradaEscaner.nextLine();
-			System.out.println("Ingrese la descripci髇 del plato: ");
+			System.out.println("\n--Ingrese la descripci贸n del plato--\n");
 			String descripcion = entradaEscaner.nextLine();
-			System.out.println("Ingrese el precio del producto: ");
+			System.out.println("\n--Ingrese el precio del producto--\n");
 			int precio = entradaEscaner.nextInt ();
 			restaurante1.crearPlato(nombreP, descripcion, precio);
 			menuRestaurante(restaurante1);
-		}else if(opcion == 2) {
+		}
+		case 2:{
 			entradaEscaner.nextLine();
-			System.out.println("Ingrese el nombre de la bebida: ");
+			System.out.println("\n--Ingrese el nombre de la bebida--\n");
 			String nombreB = entradaEscaner.nextLine ();
-			System.out.println("Ingrese la descripci髇 de la bebida: ");
+			System.out.println("\n--Ingrese la descripci贸n de la bebida--\n");
 			String descripcion = entradaEscaner.nextLine ();
-		System.out.println("Ingrese el precio del producto: ");
+		System.out.println("\n--Ingrese el precio del producto--\n");
 			int precio = entradaEscaner.nextInt ();
-			System.out.println("縞ontiene alcohol?: ");
-			System.out.println("presione 1 si la bebida contiene alcohol");
-			System.out.println("presione 2 si la bebida no contiene alcohol");
+			System.out.println("\n驴contiene alcohol?\n");
+			System.out.println("\nPresione 1 si la bebida contiene alcohol");
+			System.out.println("Presione 2 si la bebida NO contiene alcohol\n");
 			boolean alcohol;
 			int contieneAlcohol = entradaEscaner.nextInt();
 			if(contieneAlcohol ==1) {
@@ -75,74 +81,132 @@ public class Bestellen {
 			}
 			restaurante1.crearBebida(nombreB, descripcion, precio, alcohol);
 			menuRestaurante(restaurante1);
-		}else if (opcion == 3){ 
+		}
+		case 3:{ 
 			if(restaurante1.platos.size() > 0) {
 			for (int i = 0; i < restaurante1.platos.size(); i++) {
-				System.out.println(i+1 +". "+restaurante1.platos.get(i).toString());
+				System.out.println("\n" + i+1 +". "+restaurante1.platos.get(i).toString());
 			}
 			}
 			else {
-				System.out.println("Aun no hay platos en este restaurante");
+				System.out.println("\nA煤n no hay platos en este restaurante");
 			}
-			System.out.println("Presione 1 para volver al restaurante");
+			System.out.println("\n***Presione 1 para volver al restaurante***\n");
 			int regresar = entradaEscaner.nextInt ();
 			if(regresar == 1 ) {
 				menuRestaurante(restaurante1);
-			}
+			}else {invalido();}
 			
 		}
-		else if (opcion == 4) {
+		case 4:{
 			if(restaurante1.bebidas.size() > 0) {
 			for (int i = 0; i < restaurante1.bebidas.size(); i++) {
 				System.out.println(i+1 +". "+restaurante1.bebidas.get(i).toString());
 			}
 			}
 			else {
-				System.out.println("Aun no hay Bebidas en este restaurante");
+				System.out.println("\nA煤n no hay Bebidas en este restaurante\n");
 			}
-			System.out.println("Presione 1 para volver al restaurante");
+			System.out.println("\n***Presione 1 para volver al restaurante***\n");
 			int regresar = entradaEscaner.nextInt ();
 			if(regresar == 1 ) {
 				menuRestaurante(restaurante1);
 			}
-			
+			else {invalido();}
 		}
-		else {
+		case 5: main(null);
+		default: invalido();
+		}
+	}
+	public static void invalido() {
+			System.out.println("\n--Opci贸n no v谩lida--\n");
 			main(null);
+	}
+	public static void cargarDatos(){
+		try {
+			ObjectInputStream lectura = new ObjectInputStream(new FileInputStream("restaurantes.dat"));
+			@SuppressWarnings("unchecked")
+			LinkedList<Restaurante> temp = (LinkedList<Restaurante>) lectura.readObject() ;
+			lectura.close();
+			
+			Restaurantes = temp;
+		}
+		catch(ClassNotFoundException e) {
+			System.out.println("Clase no encontrada");
+		}
+		catch(EOFException e) {
+			System.out.println("No hay m谩s datos");
+		}
+		catch(IOException e){
+		}
+	}
+	public static void crearArchivo(LinkedList<Restaurante> Rest) {	
+		
+		if(Rest.size()>0) {
+			System.out.println("\nGuardando Informaci贸n...");
+			try {
+				
+				ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream("restaurantes.dat"));
+				archivo.writeObject(Rest);
+				archivo.close();
+				System.out.println("\n---Informaci贸n almacenada---\n");
+			}	
+			catch(EOFException e) {
+				System.out.println("No hay m谩s datos");
+			}
+			catch(IOException e){
+				System.out.println("Error");
+			}
+		}else {
+			System.out.println("\n******Nada para almacenar******\n");
+			System.exit(0);
 		}
 	}
 	public static void main(String args[]) {
+		@SuppressWarnings("resource")
 		Scanner entradaEscaner = new Scanner (System.in);
 		
-		int opcion;
+		cargarDatos();
 		
-		opcion = menuPrincipal();
-		
-		if(opcion == 1) {
+		int opcion = menuPrincipal();
+		switch (opcion) {
+		case 1:{
 			System.out.println("Ingrese el nombre restaurante:");
 			String nombre = entradaEscaner.nextLine ();
-			System.out.println("Ingrese la direcci髇:");
+			System.out.println("Ingrese la direcci贸n:");
 			String direccion = entradaEscaner.nextLine ();
 			Restaurante restaurante1 = new Restaurante(nombre, direccion);
 			Restaurantes.add(restaurante1);
+			crearArchivo(Restaurantes);
 			menuRestaurante(restaurante1);
 		}
-		if(opcion == 2) {
+		case 2:{
 			if(Restaurantes.size()>0) {
 				System.out.println("Escoja un restaurante:");
 				for (int i = 0; i < Restaurantes.size(); i++) {
 					System.out.println(i+1 +". "+Restaurantes.get(i).getNombre());
 				}
 				opcion = entradaEscaner.nextInt();
+//				if (entradaEscaner.hasNextInt()) {
+//					opcion = entradaEscaner.nextInt();
+//					System.out.println(Restaurantes.get(opcion-1).toString());
+//					menuRestaurante(Restaurantes.get(opcion-1));
+//					}
+//					else invalido();
 				System.out.println(Restaurantes.get(opcion-1).toString());
 				menuRestaurante(Restaurantes.get(opcion-1));
 			}else {
-				System.out.println("Aun no hay restaurantes creados");
-				System.out.println("ingrese cualquier cosa para regresar");
-				entradaEscaner.nextLine ();
+				System.out.println("\n******A煤n no hay restaurantes creados******\n");
 				main(null);
 			}
+			
 		}
+		case 3:{
+			crearArchivo(Restaurantes);
+			System.exit(0);
+		}
+		default: invalido();
 		
 	}
+}
 }

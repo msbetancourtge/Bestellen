@@ -1,6 +1,8 @@
 package Structures;
 
-public class LinkList<T> {
+import java.io.Serializable;
+
+public class LinkList<T extends Serializable> implements Serializable {
 	 
     // Generic node instance
     node<T> head;

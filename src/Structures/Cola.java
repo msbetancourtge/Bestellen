@@ -1,6 +1,8 @@
 package Structures;
 
-public class Cola<T> {
+import java.io.Serializable;
+
+public class Cola<T extends Serializable> implements Serializable {
 	node<T> head;
 	
 	public Cola() { this.head = null; }

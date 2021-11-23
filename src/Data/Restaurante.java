@@ -1,13 +1,19 @@
 package Data;
+import java.io.Serializable;
 import Structures.*;
-public class Restaurante {
+
+
+public class Restaurante implements Serializable{
+	
+
+	private static final long serialVersionUID = 1L;
+	
 private String nombre;
 private String direccion;
 public LinkedList<Plato> platos = new LinkedList<>();
 public LinkedList<Bebida> bebidas = new LinkedList<>();
 public String getNombre() {
 	return nombre;
-	
 }
 public String getDireccion() {
 	return direccion;
@@ -52,7 +58,7 @@ public void crearBebida(String nombre, String descripcion, int precio, boolean a
 }
 @Override
 public String toString() {
-	return "Este restaurante se llama " + nombre + ", y su direccion es: " + direccion;
+	return "\nNombre del Restaurante: " + nombre + "\nDirección: " + direccion + '\n';
 }
 
 
