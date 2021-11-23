@@ -42,7 +42,7 @@ public class Bebida implements Serializable{
 	@Override
 	public String toString() {
 		if(esAlcoholica == true) {
-			return "Nombre de la bebida: " + nombre + '\n' + "Descripcion: " + descripcion + '\n' + "Precio: $ " + precio + "\n***CONTIENE ALCOHOL***" ;
+			return "Nombre de la bebida: " + nombre + '\n' + "Descripcion: " + descripcion + '\n' + "Precio: $ " + precio + "\n***CONTIENE ALCOHOL***";
 		}
 		else {
 			return "Nombre de la bebida: " + nombre + '\n' + "Descripcion: " + descripcion + '\n' + "Precio: $ " + precio + " \n***NO contiene alcohol***";

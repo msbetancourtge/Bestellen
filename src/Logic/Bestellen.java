@@ -5,7 +5,8 @@ import java.util.Scanner;
 import java.io.*;
 import Data.*;
 public class Bestellen {
-	static LinkedList<Restaurante> Restaurantes = new LinkedList<>();
+	
+	LinkedList<Restaurante> Restaurantes = new LinkedList<>();
 	public void agregarRestaurante(String nombre, String direccion) {
 		Restaurante nuevo = new Restaurante(nombre, direccion, null, null);
 		Restaurantes.add(nuevo);
@@ -19,6 +20,7 @@ public class Bestellen {
 	public void mostrarRestaurantes() {
 		System.out.println(getRestaurantes());
 	}
+	@SuppressWarnings("resource")
 	public static int menuPrincipal() {
 		Scanner entradaEscaner = new Scanner (System.in);
 		System.out.println("\\\\\\\\\\\\\\\\ seleccione una opción ////////\n");
@@ -29,11 +31,47 @@ public class Bestellen {
 		if (entradaEscaner.hasNextInt()) {
 		int opcion = entradaEscaner.nextInt();
 		return opcion;}
-		else { 
+		else {
 			return 0;
 		}
 	}
-	public static void menuRestaurante(Restaurante restaurante1) {
+	public void crearRestaurante() {
+		@SuppressWarnings("resource")
+		Scanner entradaEscaner = new Scanner (System.in);
+		
+		System.out.println("Ingrese el nombre restaurante:");
+		String nombre = entradaEscaner.nextLine ();
+		System.out.println("Ingrese la dirección:");
+		String direccion = entradaEscaner.nextLine ();
+		Restaurante restaurante1 = new Restaurante(nombre, direccion);
+		//entradaEscaner.close();
+		Restaurantes.add(restaurante1);
+		actualizarArchivo(Restaurantes);
+		menuRestaurante(restaurante1);
+	}
+	public void elegirRestaurante() {
+		Scanner entradaEscaner = new Scanner (System.in);
+		if(Restaurantes.size()>0) {
+			System.out.println("Escoja un restaurante:");
+			for (int i = 0; i < Restaurantes.size(); i++) {
+				System.out.println(i+1 +". "+Restaurantes.get(i).getNombre());
+			}
+			if (entradaEscaner.hasNextInt()) {
+				int opcion = entradaEscaner.nextInt();
+				if (opcion <= Restaurantes.size()) {
+				System.out.println(Restaurantes.get(opcion-1).toString());
+				menuRestaurante(Restaurantes.get(opcion-1));}
+				else invalido();
+				}
+				else invalido();
+		}else {
+			System.out.println("\n******Aún no hay restaurantes creados******\n");
+			menu();
+		}
+		entradaEscaner.close();
+		
+	}
+	public void menuRestaurante(Restaurante restaurante1) {
 		@SuppressWarnings("resource")
 		Scanner entradaEscaner = new Scanner (System.in);
 		int opcion;
@@ -115,15 +153,15 @@ public class Bestellen {
 			}
 			else {invalido();}
 		}
-		case 5: main(null);
+		case 5: menu();
 		default: invalido();
 		}
 	}
-	public static void invalido() {
+	public void invalido() {
 			System.out.println("\n--Opción no válida--\n");
-			main(null);
+			menu();
 	}
-	public static void cargarDatos(){
+	public void cargarDatos(){
 		try {
 			ObjectInputStream lectura = new ObjectInputStream(new FileInputStream("restaurantes.dat"));
 			@SuppressWarnings("unchecked")
@@ -141,7 +179,7 @@ public class Bestellen {
 		catch(IOException e){
 		}
 	}
-	public static void crearArchivo(LinkedList<Restaurante> Rest) {	
+	public static void archivoInicial(LinkedList<Restaurante> Rest) {	
 		
 		if(Rest.size()>0) {
 			System.out.println("\nGuardando Información...");
@@ -149,6 +187,7 @@ public class Bestellen {
 				
 				ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream("restaurantes.dat"));
 				archivo.writeObject(Rest);
+//				archivo.flush();
 				archivo.close();
 				System.out.println("\n---Información almacenada---\n");
 			}	
@@ -163,51 +202,64 @@ public class Bestellen {
 			System.exit(0);
 		}
 	}
-	public static void main(String args[]) {
-		@SuppressWarnings("resource")
-		Scanner entradaEscaner = new Scanner (System.in);
+	public void actualizarArchivo(LinkedList<Restaurante> Rest) {	
 		
-		cargarDatos();
-		
+		if(Rest.size()>0) {
+			System.out.println("\nGuardando Información...");
+			try {
+				
+				ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream("restaurantes.dat"));
+				archivo.writeObject(Rest);
+//				archivo.flush();
+				archivo.close();
+				System.out.println("\n---Información almacenada---\n");
+			}	
+			catch(EOFException e) {
+				System.out.println("No hay más datos");
+			}
+			catch(IOException e){
+				System.out.println("Error");
+			}
+		}else {
+			System.out.println("\n******Nada para almacenar******\n");
+			System.exit(0);
+		}
+	}
+	public void menu() {
 		int opcion = menuPrincipal();
 		switch (opcion) {
 		case 1:{
-			System.out.println("Ingrese el nombre restaurante:");
-			String nombre = entradaEscaner.nextLine ();
-			System.out.println("Ingrese la dirección:");
-			String direccion = entradaEscaner.nextLine ();
-			Restaurante restaurante1 = new Restaurante(nombre, direccion);
-			Restaurantes.add(restaurante1);
-			crearArchivo(Restaurantes);
-			menuRestaurante(restaurante1);
+			crearRestaurante();
 		}
 		case 2:{
-			if(Restaurantes.size()>0) {
-				System.out.println("Escoja un restaurante:");
-				for (int i = 0; i < Restaurantes.size(); i++) {
-					System.out.println(i+1 +". "+Restaurantes.get(i).getNombre());
-				}
-				opcion = entradaEscaner.nextInt();
-//				if (entradaEscaner.hasNextInt()) {
-//					opcion = entradaEscaner.nextInt();
-//					System.out.println(Restaurantes.get(opcion-1).toString());
-//					menuRestaurante(Restaurantes.get(opcion-1));
-//					}
-//					else invalido();
-				System.out.println(Restaurantes.get(opcion-1).toString());
-				menuRestaurante(Restaurantes.get(opcion-1));
-			}else {
-				System.out.println("\n******Aún no hay restaurantes creados******\n");
-				main(null);
-			}
-			
+			elegirRestaurante();
 		}
 		case 3:{
-			crearArchivo(Restaurantes);
+			actualizarArchivo(Restaurantes);
 			System.exit(0);
 		}
 		default: invalido();
-		
 	}
+	}
+	public static void main(String args[]) {
+		
+		Bestellen data = new Bestellen();
+		data.cargarDatos();
+		data.menu();
+		
+//		int opcion = menuPrincipal();
+//		switch (opcion) {
+//		case 1:{
+//			data.crearRestaurante();
+//		}
+//		case 2:{
+//			data.elegirRestaurante();
+//		}
+//		case 3:{
+//			data.actualizarArchivo(data.Restaurantes);
+//			System.exit(0);
+//		}
+//		default: data.invalido();
+//	}
 }
 }
