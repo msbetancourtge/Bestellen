@@ -6,20 +6,24 @@ import Structures.*;
 public class Restaurante implements Serializable{
 	
 
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 private String nombre;
 private String direccion;
 public LinkedList<Plato> platos = new LinkedList<>();
 public LinkedList<Bebida> bebidas = new LinkedList<>();
+
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
 public String getNombre() {
 	return nombre;
 }
-public String getDireccion() {
-	return direccion;
-}
 public void setDireccion(String direccion) {
 	this.direccion = direccion;
+}
+public String getDireccion() {
+	return direccion;
 }
 public LinkedList<Plato> getPlatos() {
 	return platos;
@@ -33,9 +37,7 @@ public LinkedList<Bebida> getBebidas() {
 public void setBebidas(LinkedList<Bebida> bebidas) {
 	this.bebidas = bebidas;
 }
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
+
 public Restaurante(String nombre, String direccion, LinkedList<Plato> platos, LinkedList<Bebida> bebidas) {
 	super();
 	this.nombre = nombre;

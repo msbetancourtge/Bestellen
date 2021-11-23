@@ -47,7 +47,6 @@ public class Bestellen {
 			opcion = entradaEscaner.nextInt();
 			}
 			else {opcion=0;}
-		
 		switch (opcion) {
 		case 1:{
 			entradaEscaner.nextLine();
@@ -85,7 +84,8 @@ public class Bestellen {
 		case 3:{ 
 			if(restaurante1.platos.size() > 0) {
 			for (int i = 0; i < restaurante1.platos.size(); i++) {
-				System.out.println("\n" + i+1 +". "+restaurante1.platos.get(i).toString());
+				System.out.println();
+				System.out.println(i+1 +". "+restaurante1.platos.get(i).toString());
 			}
 			}
 			else {
@@ -101,6 +101,7 @@ public class Bestellen {
 		case 4:{
 			if(restaurante1.bebidas.size() > 0) {
 			for (int i = 0; i < restaurante1.bebidas.size(); i++) {
+				System.out.println();
 				System.out.println(i+1 +". "+restaurante1.bebidas.get(i).toString());
 			}
 			}
