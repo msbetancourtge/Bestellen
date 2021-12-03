@@ -4,10 +4,11 @@ import java.io.Serializable;
 
 public class Cola<T extends Serializable> implements Serializable {
 	node<T> head;
+	node<T> tail;
 	
 	public Cola() { this.head = null; }
 	
-	void enqueue(T data)
+	public void enqueue(T data)
 	{
 
 	    // Creating new node with given value
@@ -15,38 +16,29 @@ public class Cola<T extends Serializable> implements Serializable {
 
 	    // Checking if list is empty
 	    // and assigning new value to head node
-	    if (this.head == null) {
+	    if (head == null) {
 	        head = temp;
-	    }
-
-	    // If list already exists
-	    else {
-
-	        // Temporary node for traversal
-	        node<T> X = head;
-
-	        // Iterating till end of the List
-	        while (X.next != null) {
-	            X = X.next;
-	        }
-
-	        // Adding new valued node at the end of the list
-	        X.next = temp;
+	        tail = temp;
+	    }else {
+	    	if(tail == head) {
+	    		tail = temp;
+	    		head.next = tail;
+	    	}else {
+	    		tail.next = temp;
+	    		tail= tail.next;
+	    	}
 	    }
 	}
-	void dequeue() 
+	public <T> Object dequeue() 
 	{
-		// Dummy node with null value
-	    node<T> prev = new node<>(null);
-
-	    if (head!=null){
-	    	prev=head;
+		String temp = peek();
+		if (head!=null){
 	    	head = head.next;
-	    	prev=null;
-	    }
+		}
+	    return temp;
 	    
 	}
-	String peek() 
+	public String peek() 
 	{
 		node<T> temp = head;
 		return String.valueOf(temp.data);

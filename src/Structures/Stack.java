@@ -2,7 +2,7 @@ package Structures;
 
 import java.io.Serializable;
 
-//el ultimo a�adido es el primero que se saca
+
 public class Stack <T extends Serializable> implements Serializable {
 	// Generic node instance
     node<T> head;
@@ -10,7 +10,7 @@ public class Stack <T extends Serializable> implements Serializable {
     public Stack() { this.head = null; }
     
     
-	void push( T data)
+	public void push( T data)
 	{
 		// Temporary node that stores previous head
         // value
@@ -24,19 +24,18 @@ public class Stack <T extends Serializable> implements Serializable {
 
         return;
     }
-	void pop() 
+	public Object pop() 
 	{
 		// Dummy node with null value
-        node<T> prev = new node<>(null);
+        String temp = top();
  
         if (head!=null){
-        	prev=head;
         	head = head.next;
-        	prev=null;
         }
+		return temp;
         
 	}
-	String top() 
+	public String top() 
 	{
 		node<T> temp = head;
 		return String.valueOf(temp.data);
