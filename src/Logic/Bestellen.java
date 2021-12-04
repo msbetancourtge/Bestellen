@@ -244,26 +244,9 @@ public class Bestellen {
 	}
 	public static void main(String args[]) {
 		
-		//Bestellen data = new Bestellen();  // OJO quitar "//" 
-		//data.cargarDatos();  // OJO quitar "//" 
-		//data.menu();  // OJO quitar "//" 
-		
-		Cola cola1 = new Cola();
-		cola1.enqueue(1);
-		cola1.enqueue(2);
-		cola1.enqueue(3);
-		System.out.println(cola1.dequeue());
-		System.out.println(cola1.dequeue());
-		System.out.println(cola1.dequeue());
-		
-		
-		Stack cola2 = new Stack();
-		cola2.push(1);
-		cola2.push(2);
-		cola2.push(3);
-		System.out.println(cola2.pop());
-		System.out.println(cola2.pop());
-		System.out.println(cola2.pop());
+		Bestellen data = new Bestellen(); 
+		data.cargarDatos();
+		data.menu();
 		
 //		int opcion = menuPrincipal();
 //		switch (opcion) {
