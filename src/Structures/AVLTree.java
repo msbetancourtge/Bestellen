@@ -2,7 +2,7 @@ package Structures;
 import java.io.Serializable;
 
 
-public class AVLTree<T extends Serializable> implements Comparable<T>, Serializable  {
+public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -63,7 +63,7 @@ public class AVLTree<T extends Serializable> implements Comparable<T>, Serializa
 	private boolean contains(TreeNode<T> root, T data) {
 		if (root==null) return false;
 		
-		int compare = ((Comparable<T>) data).compareTo(root.data);
+		int compare = data.compareTo(root.data);
 		
 		if (compare<0) return contains(root.left, data);
 		else if(compare>0) return contains(root.right, data);
@@ -96,27 +96,25 @@ public class AVLTree<T extends Serializable> implements Comparable<T>, Serializa
     }
 	
 	public void insert(T data)  { 
+		size++;
 		root = insert(root, data);
 	}
 	private TreeNode<T> insert(TreeNode<T> root, T data){
 		
 		if (root==null) {
-			
-			size++;
 			System.out.println("Insertado el valor: " + size);
 			return new TreeNode<T> (data);}
 		
-		int compare = ((Comparable<T>) data).compareTo(root.data);
+		int compare = data.compareTo(root.data);
 		if (compare < 0) root.left = insert(root.left, data);
 		else if(compare > 0) root.right = insert(root.right, data);
 		else return root;
-		
 		root.h = 1 + Math.max(height(root.left), height(root.right));
 		
 		int b = balance(root);
 		int compare1=0, compare2=0;
-		if (root.left !=null) compare1 = ((Comparable<T>) data).compareTo(root.left.data);
-		if (root.right!=null) compare2 = ((Comparable<T>) data).compareTo(root.right.data);
+		if (root.left !=null) compare1 = data.compareTo(root.left.data);
+		if (root.right!=null) compare2 = data.compareTo(root.right.data);
 		
 		if (b > 1 && compare1<0) return rotateLeft(root);
 		else if (b < -1 && compare2>0) return rotateRight(root);
@@ -129,20 +127,20 @@ public class AVLTree<T extends Serializable> implements Comparable<T>, Serializa
             return rotateRight(root);
         }
 		else ;
-		size++;
 		System.out.println("Insertado el valor: " + size);
         return root;
 	}
 	
 	
 	public void remove(T data)  { 
+		size--;
 		root = remove(root, data); 
 	}
 	private TreeNode<T> remove(TreeNode<T> root, T data){
 		
 		if (root==null) return root;
 		
-		int compare = ((Comparable<T>) data).compareTo(root.data);
+		int compare = data.compareTo(root.data);
 		
 		if (compare < 0) root.left = remove(root.left, data);
 		else if(compare > 0) root.right = remove(root.right, data);
@@ -152,7 +150,6 @@ public class AVLTree<T extends Serializable> implements Comparable<T>, Serializa
 		}
 		else 
 			root = (root.left!=null) ? root.left : root.right;
-		
 		return root;
 	}
 	
@@ -168,13 +165,6 @@ public class AVLTree<T extends Serializable> implements Comparable<T>, Serializa
 			print(root.right);
 		}
 	}
-
-	@Override
-	public int compareTo(T o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 	
 }
 

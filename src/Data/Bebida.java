@@ -32,6 +32,11 @@ public class Bebida implements Serializable{
 	public void setEsAlcoholica(boolean esAlcoholica) {
 		this.esAlcoholica = esAlcoholica;
 	}
+	
+	public Bebida() {
+		
+	}
+	
 	public Bebida(String nombre, String descripcion, int precio, boolean esAlcoholica) {
 		super();
 		this.nombre = nombre;

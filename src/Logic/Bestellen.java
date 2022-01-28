@@ -82,7 +82,8 @@ public class Bestellen {
 		System.out.println("Opcion 3: Mostrar Menú de platos");
 		System.out.println("Opcion 4: Mostrar Menú de bebidas");
 		System.out.println("Opcion 5: Hacer pedido");
-		System.out.println("Opción 6: Regresar al menú principal");
+		System.out.println("Opcion 6: Ver Facturas");
+		System.out.println("Opción 7: Regresar al menú principal");
 		if (entradaEscaner.hasNextInt()) {
 			opcion = entradaEscaner.nextInt();
 			}
@@ -159,7 +160,10 @@ public class Bestellen {
 		case 5:{
 			restaurante1.generarOrden();
 		}
-		case 6: menu();
+		case 6:{
+			restaurante1.verFacturas();
+		}
+		case 7: menu();
 		default: invalido();
 		}
 	}

@@ -2,7 +2,7 @@ package Structures;
 
 import java.io.Serializable;
 
-public class TreeNode<T extends Serializable> implements Serializable  {
+public class TreeNode<T> implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 	T data; 

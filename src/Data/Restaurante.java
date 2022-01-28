@@ -14,7 +14,7 @@ private String nombre;
 private String direccion;
 public LinkedList<Plato> platos = new LinkedList<>();
 public LinkedList<Bebida> bebidas = new LinkedList<>();
-public AVLTree<Factura> facturas = new AVLTree<>();
+public AVLTree<Factura> facturas = new AVLTree<Factura>();
 
 public void setNombre(String nombre) {
 	this.nombre = nombre;
@@ -62,6 +62,67 @@ public void crearBebida(String nombre, String descripcion, int precio, boolean a
 	bebidas.add(nuevo);	
 }
 
+public Plato eleccionPlatos() {
+	Scanner scan = new Scanner(System.in);
+	Plato seleccion = new Plato();
+	if(this.platos.size() > 0) {
+		for (int i = 0; i < this.platos.size(); i++) {
+			System.out.println();
+			System.out.println(i+1 +". "+this.platos.get(i).toString());
+		}
+		int selec = scan.nextInt();
+		if (selec <=this.platos.size())
+		seleccion = this.platos.get(selec-1);
+		else{
+			System.out.println("\nElección Inválida");
+			eleccionPlatos();
+		}
+		
+		}
+		else {
+			System.out.println("\nAún no hay platos en este restaurante");
+			System.out.println("\n***Presione 1 para volver al menú inicial***\n");
+			int regresar = scan.nextInt ();
+			if(regresar == 1 ) {
+				Bestellen.menuPrincipal();
+			}else {invalido();}
+		}
+return seleccion;
+
+}
+
+
+public Bebida eleccionBebidas() {
+	Scanner scan = new Scanner(System.in);
+	Bebida seleccion = new Bebida();
+	if(this.bebidas.size() > 0) {
+		for (int i = 0; i < this.bebidas.size(); i++) {
+			System.out.println();
+			System.out.println(i+1 +". "+this.bebidas.get(i).toString());
+		}
+		int selec = scan.nextInt();
+		if (selec <=this.bebidas.size())
+		seleccion = this.bebidas.get(selec-1);
+		else{
+			System.out.println("\nElección Inválida");
+			eleccionBebidas();
+		}
+		
+		}
+		else {
+			System.out.println("\nAún no hay platos en este restaurante");
+			System.out.println("\n***Presione 1 para volver al menú inicial***\n");
+			int regresar = scan.nextInt ();
+			if(regresar == 1 ) {
+				Bestellen.menuPrincipal();
+			}else {invalido();}
+		}
+return seleccion;
+}
+
+
+
+
 public void generarOrden() {
 	
 	LinkedList<Plato> ordenPlatos = new LinkedList<>();
@@ -84,67 +145,64 @@ public void generarOrden() {
 	
 	System.out.println("Elija un plato del menú para el comensal: " + k);
 	
-	if(this.platos.size() > 0) {
-		for (int i = 0; i < this.platos.size(); i++) {
-			System.out.println();
-			System.out.println(i+1 +". "+this.platos.get(i).toString());
-		}
-		int selec = scan.nextInt();
-		ordenPlatos.add(this.platos.get(selec-1));
-		
-		}
-		else {
-			System.out.println("\nAún no hay platos en este restaurante");
-			System.out.println("\n***Presione 1 para volver al menú inicial***\n");
-			int regresar = scan.nextInt ();
-			if(regresar == 1 ) {
-				Bestellen.menuPrincipal();
-				break;
-			}else {invalido();}
-		}
+	ordenPlatos.add(eleccionPlatos());
+//	if(this.platos.size() > 0) {
+//		for (int i = 0; i < this.platos.size(); i++) {
+//			System.out.println();
+//			System.out.println(i+1 +". "+this.platos.get(i).toString());
+//		}
 //		int selec = scan.nextInt();
+//		if (selec <=this.platos.size())
+//		ordenPlatos.add(this.platos.get(selec-1));
+//		else{}
 //		
-//		ordenPlatos.add(this.platos.get(selec));
+//		}
+//		else {
+//			System.out.println("\nAún no hay platos en este restaurante");
+//			System.out.println("\n***Presione 1 para volver al menú inicial***\n");
+//			int regresar = scan.nextInt ();
+//			if(regresar == 1 ) {
+//				Bestellen.menuPrincipal();
+//				break;
+//			}else {invalido();}
+//		}
 		
 		System.out.println("Elija una bebida del menú para el comensal: " + k);
 		
-		if(this.bebidas.size() > 0) {
-			for (int i = 0; i < this.bebidas.size(); i++) {
-				System.out.println();
-				System.out.println(i+1 +". "+this.bebidas.get(i).toString());
-			}
-			
-			int sel = scan.nextInt();
-			ordenBebidas.add(this.bebidas.get(sel-1));
-			
-			}
-			else {
-				System.out.println("\nAún no hay bebidas en este restaurante");
-				System.out.println("\n***Presione 1 para volver al menú inicial***\n");
-				int back = scan.nextInt ();
-				if(back == 1 ) {
-					
-					Bestellen.menuPrincipal();
-					break;
-				}else {invalido();}
-			}
-			
-		
-//			int sel = scan.nextInt();
+		ordenBebidas.add(eleccionBebidas());
+//		if(this.bebidas.size() > 0) {
+//			for (int i = 0; i < this.bebidas.size(); i++) {
+//				System.out.println();
+//				System.out.println(i+1 +". "+this.bebidas.get(i).toString());
+//			}
 //			
-//			ordenBebidas.add(this.bebidas.get(sel));
+//			int sel = scan.nextInt();
+//			ordenBebidas.add(this.bebidas.get(sel-1));
+//			
+//			}
+//			else {
+//				System.out.println("\nAún no hay bebidas en este restaurante");
+//				System.out.println("\n***Presione 1 para volver al menú inicial***\n");
+//				int back = scan.nextInt ();
+//				if(back == 1 ) {
+//					
+//					Bestellen.menuPrincipal();
+//					break;
+//				}else {invalido();}
+//			}
 		
 	}
-		 
-		Orden pedido = new Orden(new Usuario(nombre, email, cc, tel), ordenPlatos, ordenBebidas);
+		Usuario cliente =new Usuario(nombre, email, cc, tel);
+		Orden pedido = new Orden(cliente, ordenPlatos, ordenBebidas);
 		
-		facturas.insert(pedido.facturar(facturas.getSize()));
-		
-	
-	//scan.close();
-	
-	
+		facturas.insert(pedido.facturar(facturas.getSize(), cliente));
+
 }
+
+	public void verFacturas() {
+		//System.out.println(facturas);
+		facturas.print();
+	}
 
 	public void invalido() {
 		System.out.println("\n--Opción no válida--\n");

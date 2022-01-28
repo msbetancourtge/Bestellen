@@ -26,6 +26,7 @@ public class Plato implements Serializable{
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
+	public Plato() {}
 	public Plato(String nombre, String descripcion, int precio) {
 		super();
 		this.nombre = nombre;

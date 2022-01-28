@@ -3,11 +3,12 @@ import java.io.Serializable;
 
 import Structures.LinkedList;
 
-public class Factura implements Serializable, Comparable<Integer>{
+public class Factura implements Serializable, Comparable<Factura>{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private int id, total;
+	private Usuario cliente;
 	private LinkedList<Plato> compraPlatos = new LinkedList<>();
 	private LinkedList<Bebida> compraBebidas = new LinkedList<>();
 	
@@ -35,12 +36,18 @@ public class Factura implements Serializable, Comparable<Integer>{
 	public void setCompraBebidas(LinkedList<Bebida> compraBebidas) {
 		this.compraBebidas = compraBebidas;
 	}
-	
+	public Usuario getCliente() {
+		return cliente;
+	}
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
+	}
 	public Factura() {
 	}
 	
-	public Factura(int id, int total, LinkedList<Plato> compraPlatos, LinkedList<Bebida> compraBebidas) {
+	public Factura(Usuario cliente, int id, int total, LinkedList<Plato> compraPlatos, LinkedList<Bebida> compraBebidas) {
 		super();
+		this.cliente = cliente;
 		this.id = id;
 		this.total = total;
 		this.compraPlatos = compraPlatos;
@@ -49,15 +56,17 @@ public class Factura implements Serializable, Comparable<Integer>{
 
 	@Override
 	public String toString() {
-			return "Id de la Factura: " + getId() + '\n' + "Total: " + getTotal() + '\n';
+			return "Info Cliente: \n" + cliente.toString() + "\nId de la Factura: " + getId() + '\n' + "Total: " + getTotal() + '\n';
 	}
 
+
 	@Override
-	public int compareTo(Integer o) {
+	public int compareTo(Factura o) {
 		
-		if (this.id<o) return -1;
-		else if(this.id>o) return 1;
+		if (this.id<o.id) return -1;
+		else if(this.id>o.id) return 1;
 		else return 0;
+
 	}
 	
 	

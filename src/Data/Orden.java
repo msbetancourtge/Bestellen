@@ -31,25 +31,24 @@ public class Orden {
 		this.bebidas = bebidas;
 	}
 	
-	public Factura facturar(int id) {
+	public Factura facturar(int id, Usuario cliente) {
 		
-		int total=0;
-		
-		System.out.println("Cosas a facturar: \n");
-		
+		int total=0;	
 		for (int i=0; i<platos.size(); i++) {
 			
-			System.out.println("Plato " + i + ":");
-			System.out.println(platos.get(i));
-			//total += platos.get(i).getPrecio();
+//			System.out.println("Plato " + i+1 + ":");
+//			System.out.println(platos.get(i));
+			total += platos.get(i).getPrecio();
 		}
 		for (int i=0; i<bebidas.size(); i++) {
-			System.out.println("Bebida " + i + ":");
-			System.out.println(platos.get(i));
-			//total += bebidas.get(i).getPrecio();
+//			System.out.println("Bebida " + i+1 + ":");
+//			System.out.println(platos.get(i));
+			total += bebidas.get(i).getPrecio();
 		}
 		
-		Factura factura = new Factura(id, total, platos, bebidas);
+		System.out.println("Total: \n" + total);
+		
+		Factura factura = new Factura(cliente, id, total, platos, bebidas);
 		
 		return factura;
 		

@@ -51,6 +51,8 @@ public class Usuario implements Serializable{
 		setCc(cc);
 		setTel(tel);
 	}
-	
-
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", cc=" + cc + "]";
+	}
 }
