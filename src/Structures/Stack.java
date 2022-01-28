@@ -4,40 +4,38 @@ import java.io.Serializable;
 
 
 public class Stack <T extends Serializable> implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	// Generic node instance
-    node<T> head;
+    Node<T> head;
     
-    public Stack() { this.head = null; }
+    public Stack() { 
+    	this.head = null; 
+    	}
     
-    
-	public void push( T data)
-	{
+	public void push( T data){
 		// Temporary node that stores previous head
         // value
-        node<T> temp = head;
+        Node<T> temp = head;
 
         // New valued node stored in head
-        head = new node<T>(data);
+        head = new Node<T>(data);
 
         // New head node pointing to old head node
         head.next = temp;
 
         return;
     }
-	public Object pop() 
-	{
+	public Object pop() {
 		// Dummy node with null value
         String temp = top();
- 
         if (head!=null){
         	head = head.next;
         }
-		return temp;
-        
+	return temp;
 	}
-	public String top() 
-	{
-		node<T> temp = head;
+	public String top() {
+		Node<T> temp = head;
 		return String.valueOf(temp.data);
 	}
 		

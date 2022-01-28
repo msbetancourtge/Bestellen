@@ -81,7 +81,8 @@ public class Bestellen {
 		System.out.println("Opcion 2: Agregar bebida");
 		System.out.println("Opcion 3: Mostrar Menú de platos");
 		System.out.println("Opcion 4: Mostrar Menú de bebidas");
-		System.out.println("Opción 5: Regresar al menú principal");
+		System.out.println("Opcion 5: Hacer pedido");
+		System.out.println("Opción 6: Regresar al menú principal");
 		if (entradaEscaner.hasNextInt()) {
 			opcion = entradaEscaner.nextInt();
 			}
@@ -154,7 +155,11 @@ public class Bestellen {
 			}
 			else {invalido();}
 		}
-		case 5: menu();
+		
+		case 5:{
+			restaurante1.generarOrden();
+		}
+		case 6: menu();
 		default: invalido();
 		}
 	}
@@ -244,23 +249,8 @@ public class Bestellen {
 	}
 	public static void main(String args[]) {
 		
-		Bestellen data = new Bestellen(); 
+		Bestellen data = new Bestellen();
 		data.cargarDatos();
 		data.menu();
-		
-//		int opcion = menuPrincipal();
-//		switch (opcion) {
-//		case 1:{
-//			data.crearRestaurante();
-//		}
-//		case 2:{
-//			data.elegirRestaurante();
-//		}
-//		case 3:{
-//			data.actualizarArchivo(data.Restaurantes);
-//			System.exit(0);
-//		}
-//		default: data.invalido();
-//	}
 }
 }

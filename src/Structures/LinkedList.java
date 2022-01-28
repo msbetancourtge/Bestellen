@@ -1,8 +1,5 @@
 package Structures;
-
 import java.io.Serializable;
-
-import Data.Restaurante;
 
 public class LinkedList<T extends Serializable> implements Serializable {
 	 
@@ -10,19 +7,17 @@ public class LinkedList<T extends Serializable> implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Generic node instance
-    node<T> head;
+    Node<T> head;
     // Data member to store length of list
     private int length = 0;
- 
     // Default constructor
     public LinkedList() { this.head = null; }
     // Method
     // To add node at the end of List
     public void add(T data)
     {
- 
         // Creating new node with given value
-        node<T> temp = new node<>(data);
+        Node<T> temp = new Node<>(data);
  
         // Checking if list is empty
         // and assigning new value to head node
@@ -34,7 +29,7 @@ public class LinkedList<T extends Serializable> implements Serializable {
         else {
  
             // Temporary node for traversal
-            node<T> X = head;
+            Node<T> X = head;
  
             // Iterating till end of the List
             while (X.next != null) {
@@ -68,10 +63,10 @@ public class LinkedList<T extends Serializable> implements Serializable {
  
             // Temporary node that stores previous head
             // value
-            node<T> temp = head;
+            Node<T> temp = head;
  
             // New valued node stored in head
-            head = new node<T>(data);
+            head = new Node<T>(data);
  
             // New head node pointing to old head node
             head.next = temp;
@@ -80,11 +75,11 @@ public class LinkedList<T extends Serializable> implements Serializable {
         }
  
         // Temporary node for traversal
-        node<T> temp = head;
+        Node<T> temp = head;
  
         // Dummy node with null value that stores previous
         // node
-        node<T> prev = new node<T>(null);
+        Node<T> prev = new Node<T>(null);
         // iterating to the given position
         while (position - 1 > 0) {
             // assigning previous node
@@ -95,7 +90,7 @@ public class LinkedList<T extends Serializable> implements Serializable {
             position--;
         }
         // previous node now points to new value
-        prev.next = new node<T>(data);
+        prev.next = new Node<T>(data);
         // new value now points to former current node
         prev.next.next = temp;
     }
@@ -103,27 +98,14 @@ public class LinkedList<T extends Serializable> implements Serializable {
     // To remove a node from list
    public void remove(T key)
     {
- 
-        //  NOTE
-        // dummy node is used to represent the node before
-        // the current node Since in a Singly Linked-List we
-        // cannot go backwards from a node, we use a dummy
-        // node to represent the previous node. In case of
-        // head node, since there is no previous node, the
-        // previous node is assigned to null.
- 
         // Dummy node with null value
-        node<T> prev = new node<>(null);
- 
+        Node<T> prev = new Node<>(null);
         // Dummy node pointing to head node
         prev.next = head;
- 
         // Next node that points ahead of current node
-        node<T> next = head.next;
- 
+        Node<T> next = head.next;
         // Temporary node for traversal
-        node<T> temp = head;
- 
+        Node<T> temp = head;
         // Boolean value that checks whether value to be
         // deleted exists or not
         boolean exists = false;
@@ -184,55 +166,41 @@ public class LinkedList<T extends Serializable> implements Serializable {
  
         // If node to be deleted exists
         if (exists) {
- 
             // Length of LinkedList reduced
             length--;
         }
- 
         // If node to be deleted does not exist
         else {
- 
-            // Print statement
             System.out.println(
-                "Given Value is not present in linked list");
+                "Ese valor no existe");
         }
     }
  
     // Method
     // To clear the entire LinkedList
-    public void clear()
-    {
- 
+    public void clear(){
         // Head now points to null
         head = null;
         // length is 0 again
         length = 0;
     }
- 
-    // Method
-    // Returns whether List is empty or not
-    boolean empty()
-    {
- 
-        // Checking if head node points to null
-        if (head == null) {
-            return true;
-        }
+
+    public boolean isEmpty(){
+        if (head == null) return true;
         return false;
     }
-    // Method
-    // Returning the size of LinkedList
-    public int size() { return this.length; }
+    
+    public int size() { 
+    	return this.length;
+    	}
  
     // Method
     // To display the LinkedList
     // @Override
-    public String toString()
-    {
+    public String toString(){
  
         String S = "{ ";
- 
-        node<T> X = head;
+        Node<T> X = head;
  
         if (X == null)
             return S + " }";
@@ -246,7 +214,7 @@ public class LinkedList<T extends Serializable> implements Serializable {
         return S + " }";
     }
 	public  T get(int i) {
-		node<T> current = head;
+		Node<T> current = head;
 	        int count = 0; /* index of Node we are
 	                          currently looking at */
 	        while (current != null)

@@ -1,17 +1,20 @@
 package Data;
+import java.util.Scanner;
+
+import Logic.Bestellen;
+
 import java.io.Serializable;
 import Structures.*;
 
-
 public class Restaurante implements Serializable{
 	
-
 private static final long serialVersionUID = 1L;
-	
+
 private String nombre;
 private String direccion;
 public LinkedList<Plato> platos = new LinkedList<>();
 public LinkedList<Bebida> bebidas = new LinkedList<>();
+public AVLTree<Factura> facturas = new AVLTree<>();
 
 public void setNombre(String nombre) {
 	this.nombre = nombre;
@@ -58,6 +61,97 @@ public void crearBebida(String nombre, String descripcion, int precio, boolean a
 	Bebida nuevo = new Bebida(nombre, descripcion, precio, alcohol);
 	bebidas.add(nuevo);	
 }
+
+public void generarOrden() {
+	
+	LinkedList<Plato> ordenPlatos = new LinkedList<>();
+	LinkedList<Bebida> ordenBebidas = new LinkedList<>();
+	
+	Scanner scan = new Scanner(System.in);
+	System.out.println("Nombre del Cliente");
+	String nombre = scan.nextLine();
+	System.out.println("Email del Cliente");
+	String email = scan.nextLine();
+	System.out.println("Cédula del Cliente");
+	int cc = scan.nextInt();
+	System.out.println("Teléfono del Cliente");
+	long tel = scan.nextLong();
+	
+	System.out.println("Cantidad de comensales");
+	int personas = scan.nextInt();
+	
+	for(int k=1; k<=personas; k++) {
+	
+	System.out.println("Elija un plato del menú para el comensal: " + k);
+	
+	if(this.platos.size() > 0) {
+		for (int i = 0; i < this.platos.size(); i++) {
+			System.out.println();
+			System.out.println(i+1 +". "+this.platos.get(i).toString());
+		}
+		int selec = scan.nextInt();
+		ordenPlatos.add(this.platos.get(selec-1));
+		
+		}
+		else {
+			System.out.println("\nAún no hay platos en este restaurante");
+			System.out.println("\n***Presione 1 para volver al menú inicial***\n");
+			int regresar = scan.nextInt ();
+			if(regresar == 1 ) {
+				Bestellen.menuPrincipal();
+				break;
+			}else {invalido();}
+		}
+//		int selec = scan.nextInt();
+//		
+//		ordenPlatos.add(this.platos.get(selec));
+		
+		System.out.println("Elija una bebida del menú para el comensal: " + k);
+		
+		if(this.bebidas.size() > 0) {
+			for (int i = 0; i < this.bebidas.size(); i++) {
+				System.out.println();
+				System.out.println(i+1 +". "+this.bebidas.get(i).toString());
+			}
+			
+			int sel = scan.nextInt();
+			ordenBebidas.add(this.bebidas.get(sel-1));
+			
+			}
+			else {
+				System.out.println("\nAún no hay bebidas en este restaurante");
+				System.out.println("\n***Presione 1 para volver al menú inicial***\n");
+				int back = scan.nextInt ();
+				if(back == 1 ) {
+					
+					Bestellen.menuPrincipal();
+					break;
+				}else {invalido();}
+			}
+			
+		
+//			int sel = scan.nextInt();
+//			
+//			ordenBebidas.add(this.bebidas.get(sel));
+		
+	}
+		 
+		Orden pedido = new Orden(new Usuario(nombre, email, cc, tel), ordenPlatos, ordenBebidas);
+		
+		facturas.insert(pedido.facturar(facturas.getSize()));
+		
+	
+	//scan.close();
+	
+	
+}
+
+	public void invalido() {
+		System.out.println("\n--Opción no válida--\n");
+		Bestellen.menuPrincipal();
+	}
+
+
 @Override
 public String toString() {
 	return "\nNombre del Restaurante: " + nombre + "\nDirección: " + direccion + '\n';

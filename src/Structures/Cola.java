@@ -3,16 +3,17 @@ package Structures;
 import java.io.Serializable;
 
 public class Cola<T extends Serializable> implements Serializable {
-	node<T> head;
-	node<T> tail;
+
+	private static final long serialVersionUID = 1L;
+	
+	Node<T> head;
+	Node<T> tail;
 	
 	public Cola() { this.head = null; }
 	
-	public void enqueue(T data)
-	{
-
+	public void enqueue(T data){
 	    // Creating new node with given value
-	    node<T> temp = new node<>(data);
+	    Node<T> temp = new Node<>(data);
 
 	    // Checking if list is empty
 	    // and assigning new value to head node
@@ -36,11 +37,10 @@ public class Cola<T extends Serializable> implements Serializable {
 	    	head = head.next;
 		}
 	    return temp;
-	    
 	}
 	public String peek() 
 	{
-		node<T> temp = head;
+		Node<T> temp = head;
 		return String.valueOf(temp.data);
 	}
 

@@ -1,15 +1,26 @@
 package Structures;
-
 import java.io.Serializable;
 
-public class BinarySearchTree<T extends Serializable> implements Serializable  {
+public class BinarySearchTree<T extends Serializable> implements Comparable<T>, Serializable  {
+
+	private static final long serialVersionUID = 1L;
+	
 	private NodoArbol<T> root;
-	public void BinarySearchTree() {
+	public BinarySearchTree() {
 		this.root = null;
 	}
+	
+	public void makeEmpty() {
+		this.root=null;
+	}
+	
+	public boolean isEmpty() {
+		return root == null;
+	}
+	
 	//delete a node from BST
-	void deleteKey(int key) { 
-		root = delete_Recursive(root, key); 
+	public void deleteKey(int key) { 
+		root = delete_Recursive(root, key);
 	} 
 
 	//recursive delete function
@@ -24,21 +35,22 @@ public class BinarySearchTree<T extends Serializable> implements Serializable  {
 			root.right = delete_Recursive(root.right, key); 
 		else  { 
 			// node contains only one child
-			if (root.left == null) 
-				return root.right; 
+			if (root.left == null)
+				return root.right;
 			else if (root.right == null) 
-				return root.left; 
+				return root.left;
 
 			// node has two children; 
-			//get inorder successor (min value in the right subtree) 
-			root.key = minValue(root.right); 
+			//get inorder successor (min value in the right subtree)
+			root.key = minValue(root.right);
 
 			// Delete the inorder successor 
 			root.right = delete_Recursive(root.right, root.key); 
 		} 
 		return root; 
-	} 
-	int minValue(NodoArbol<T> root)  { 
+	}
+	
+	public int minValue(NodoArbol<T> root)  { 
 		//initially minval = root
 		int minval = root.key; 
 		//find minval
@@ -50,12 +62,12 @@ public class BinarySearchTree<T extends Serializable> implements Serializable  {
 	} 
 
 	// insert a node in BST 
-	void insert(int key, T data)  { 
+	public void insert(int key, T data)  { 
 		root = insert_Recursive(root, key, data); 
 	} 
 
 	//recursive insert function
-	NodoArbol<T> insert_Recursive(NodoArbol<T> root, int key, T data) { 
+	private NodoArbol<T> insert_Recursive(NodoArbol<T> root, int key, T data) { 
 		//tree is empty
 		if (root == null) { 
 			root = new NodoArbol<T>(data,key); 
@@ -69,16 +81,17 @@ public class BinarySearchTree<T extends Serializable> implements Serializable  {
 		// return pointer
 		return root; 
 	} 
-	boolean search(int key, T data)  { 
-		root = search_Recursive(root, key, data); 
+	
+	public boolean search(int key, T data){
+		root = search_Recursive(root, key, data);
 		if (root!= null)
 			return true;
 		else
 			return false;
 	} 
-
-	//recursive insert function
-	NodoArbol<T> search_Recursive(NodoArbol<T> root, int key, T data)  { 
+	
+	
+	private NodoArbol<T> search_Recursive(NodoArbol<T> root, int key, T data)  { 
 		// Base Cases: root is null or key is present at root 
 		if (root==null || root.key==key) 
 			return root; 
@@ -87,5 +100,10 @@ public class BinarySearchTree<T extends Serializable> implements Serializable  {
 			return search_Recursive(root.left, key, data); 
 		// val is less than root's key 
 		return search_Recursive(root.right, key, data); 
+	}
+	@Override
+	public int compareTo(T o) {
+		// TODO Auto-generated method stub
+		return 0;
 	} 
 }

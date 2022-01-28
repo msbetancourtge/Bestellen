@@ -7,23 +7,24 @@ public class Test {
 	
 	
 	public static String palabra(Random random1, int palabra) {
-		String abcMayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//		String abcMayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String abcMinus = "abcdefghijklmnopqrstuvwxyz";
-		
+//		
 		StringBuilder aux = new StringBuilder();
-		int rand = random1.nextInt(abcMayus.length());
-		char primeraLetra = abcMayus.charAt(rand);
-		int rand2 = random1.nextInt(abcMinus.length());
-		char segundaLetra = abcMinus.charAt(rand2);
-		String mix = String.valueOf(primeraLetra) + segundaLetra;
+//		int rand = random1.nextInt(abcMayus.length());
+//		char primeraLetra = abcMayus.charAt(rand);
+//		int rand2 = random1.nextInt(abcMinus.length());
+//		char segundaLetra = abcMinus.charAt(rand2);
+//		String mix = String.valueOf(primeraLetra) + segundaLetra;
 		
-		for(int i = 0; i < palabra-1; i++) {
+		for(int i = 0; i < palabra; i++) {
 			int rand3 = random1.nextInt(abcMinus.length());
 			char palabra1 = abcMinus.charAt(rand3);
 		    aux.append(palabra1);
 		    }
 		
-		String palabraFinal = mix + aux.toString();
+//		String palabraFinal = mix + aux.toString();
+		String palabraFinal = aux.toString();
 		
 		return palabraFinal;
 		
