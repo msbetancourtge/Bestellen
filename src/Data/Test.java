@@ -54,7 +54,7 @@ public class Test {
 		AVLTree<Usuario> Usuarios = new AVLTree<Usuario>();
 
 		//Restaurantes
-		for (int i=0; i<50; i++) {
+		for (int i=0; i<5000; i++) {
 			int palabra = 10, descrip = 60, minp = 50, maxp=500;
 		    Random random = new Random();
 		    String nombreRestaurante = palabra(random, palabra);
@@ -83,7 +83,7 @@ public class Test {
 		}
 		
 		//Usuarios
-		for (int i=0; i<50; i++) {
+		for (int i=0; i<5000; i++) {
 			int palabra = 12, e = 10, dominio = 10;
 		    Random random = new Random();
 		    String nombre = palabra(random, palabra);

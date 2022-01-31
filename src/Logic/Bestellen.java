@@ -598,6 +598,7 @@ public class Bestellen {
 		}
 		case 2:{
 			user.getFacturas().print();
+			break;
 		}
 		case 3:{
 			
