@@ -8,25 +8,25 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 	
 	private int size;
 	private TreeNode<T> root;
+	
+	public TreeNode<T> getRoot() {
+		return root;
+	}
 	public AVLTree() {
 		this.root = null;
 	}
-	
 	public void makeEmpty() {
 		this.root=null;
 		size=0;
 	}
-	
 	public int getSize() {
 		return this.size;
 	}
-	
 	public boolean isEmpty() {
 		return this.root == null;
 	}
 	public T findMin() throws Exception {
 		if (isEmpty()) throw new Exception();
-		
 		return findMin(root).data;
 	}
 	private TreeNode<T> findMin(TreeNode<T> root) {
@@ -34,10 +34,8 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 		else if (root.left==null) return root;
 		return findMin(root.left);
 	}
-	
 	public T findMax() throws Exception {
 		if (isEmpty()) throw new Exception();
-		
 		return findMax(root).data;
 	}
 	private TreeNode<T> findMax(TreeNode<T> root) {
@@ -45,18 +43,15 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 		else if (root.right==null) return root;
 		return findMax(root.right);
 	}
-	
 	private int height(TreeNode<T> root) {
 		if(root==null) return -1;
 		else return 1+ Math.max(height(root.left), height(root.right));
 	}
-	
 	int balance(TreeNode<T> root) {
         if (root == null) return -1;
  
         return height(root.left) - height(root.right);
     }
-	
 	public boolean contains(T data) {
 		return contains(root, data);
 	}
@@ -69,8 +64,6 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 		else if(compare>0) return contains(root.right, data);
 		else return true;
 	}
-	
-
 	private TreeNode<T> rotateLeft(TreeNode<T> root) {
         
     	TreeNode<T> temp = root.left;
@@ -80,7 +73,6 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
         root.h = height(root);
         if(temp.left !=null)
         temp.left.h = height(temp.left);
- 
         return temp;
     }
     private TreeNode<T> rotateRight(TreeNode<T> root) {
@@ -94,7 +86,6 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
         temp.right.h = height(temp.left);
         return temp;
     }
-	
 	public void insert(T data)  { 
 		size++;
 		root = insert(root, data);
@@ -121,17 +112,12 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 		else if (b > 1 && compare1>0) {
             root.left = rotateRight(root.left);
             return rotateLeft(root);
-        }
-		else if (b < -1 && compare2<0) {
+        }else if (b < -1 && compare2<0) {
             root.right = rotateLeft(root.right);
             return rotateRight(root);
-        }
-		else ;
-		System.out.println("Insertado el valor: " + size);
+        }else ;
         return root;
 	}
-	
-	
 	public void remove(T data)  { 
 		size--;
 		root = remove(root, data); 
@@ -152,10 +138,9 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 			root = (root.left!=null) ? root.left : root.right;
 		return root;
 	}
-	
 	public void print() {
 		if (isEmpty())
-			System.out.println("No hay información almacenada");
+			System.out.println("\n-------No hay información almacenada-------");
 		else print(root);
 	}
 	private void print(TreeNode<T> root) {
@@ -165,6 +150,5 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 			print(root.right);
 		}
 	}
-	
 }
 

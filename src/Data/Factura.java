@@ -53,13 +53,13 @@ public class Factura implements Serializable, Comparable<Factura>{
 		this.compraPlatos = compraPlatos;
 		this.compraBebidas = compraBebidas;
 	}
-
+	public void print() {
+		this.print();
+	}
 	@Override
 	public String toString() {
 			return "Info Cliente: \n" + cliente.toString() + "\nId de la Factura: " + getId() + '\n' + "Total: " + getTotal() + '\n';
 	}
-
-
 	@Override
 	public int compareTo(Factura o) {
 		

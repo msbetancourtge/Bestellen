@@ -1,17 +1,25 @@
 package Data;
 import java.io.Serializable;
-import Structures.BinarySearchTree;
 
-public class Usuario implements Serializable{
+import Structures.AVLTree;
+
+public class Usuario implements Serializable, Comparable<Usuario>{
 	
 	private static final long serialVersionUID = 1L;
 
-	private BinarySearchTree<Factura> facturas = new BinarySearchTree<>();
+	private AVLTree<Factura> facturas = new AVLTree<Factura>();
 	
 	private String nombre, email;
 	private int cc;
 	private long tel;
 	
+	
+	public AVLTree<Factura> getFacturas() {
+		return facturas;
+	}
+	public void setFacturas(AVLTree<Factura> facturas) {
+		this.facturas = facturas;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -36,7 +44,6 @@ public class Usuario implements Serializable{
 	public void setTel(long tel) {
 		this.tel = tel;
 	}
-	
 	public Usuario(){
 	}
 	public Usuario(String nombre, int cc) {
@@ -51,8 +58,18 @@ public class Usuario implements Serializable{
 		setCc(cc);
 		setTel(tel);
 	}
+	public void agregarFactura(Factura factura) {
+		facturas.insert(factura);
+	}
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", cc=" + cc + "]";
+		return "\nCC: " + cc + "\nNombre: " + nombre + "\nTeléfono: " + tel + "\nEmail: "+ email;
+	}
+	@Override
+	public int compareTo(Usuario o) {
+		
+		if(this.cc<o.cc) return -1;
+		else if(this.cc>o.cc) return 1;
+		else return 0;
 	}
 }

@@ -8,8 +8,30 @@ public class TreeNode<T> implements Serializable  {
 	T data; 
     TreeNode<T> left, right; 
     int h;
-   
-    public TreeNode(T info){ 
+    
+    
+    
+    public T getData() {
+		return data;
+	}
+
+	public TreeNode<T> getLeft() {
+		return left;
+	}
+
+	public void setLeft(TreeNode<T> left) {
+		this.left = left;
+	}
+
+	public TreeNode<T> getRight() {
+		return right;
+	}
+
+	public void setRight(TreeNode<T> right) {
+		this.right = right;
+	}
+
+	public TreeNode(T info){ 
         this.data = info; 
         this.left = this.right = null; 
     }

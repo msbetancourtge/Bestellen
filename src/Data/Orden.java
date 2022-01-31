@@ -35,14 +35,9 @@ public class Orden {
 		
 		int total=0;	
 		for (int i=0; i<platos.size(); i++) {
-			
-//			System.out.println("Plato " + i+1 + ":");
-//			System.out.println(platos.get(i));
 			total += platos.get(i).getPrecio();
 		}
 		for (int i=0; i<bebidas.size(); i++) {
-//			System.out.println("Bebida " + i+1 + ":");
-//			System.out.println(platos.get(i));
 			total += bebidas.get(i).getPrecio();
 		}
 		
