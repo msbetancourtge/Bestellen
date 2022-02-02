@@ -14,6 +14,7 @@ public LinkedList<Bebida> bebidas = new LinkedList<>();
 public AVLTree<Factura> facturas = new AVLTree<Factura>();
 
 
+
 public String getPw() {
 	return pw;
 }
@@ -135,6 +136,12 @@ public void generarOrden(Usuario user) {
 		Factura temp = pedido.facturar(facturas.getSize(), user, this);
 		facturas.insert(temp);
 		user.agregarFactura(temp);
+		StringBuilder aux = new StringBuilder();
+		aux.append(user.getNombre().charAt(0));
+		String key=Integer.toString(temp.getId());
+		String finalkey=aux.toString();
+		finalkey+=key;
+		user.agregarOrden(pedido, finalkey);
 }
 	public void verFacturas() {
 		facturas.print();

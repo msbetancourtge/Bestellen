@@ -2,16 +2,25 @@ package Data;
 import java.io.Serializable;
 
 import Structures.AVLTree;
+import Structures.QPHashTable;
 
 public class Usuario implements Serializable, Comparable<Usuario>{
 	
 	private static final long serialVersionUID = 1L;
 
 	private AVLTree<Factura> facturas = new AVLTree<Factura>();
+	private QPHashTable<Orden> ordenes = new QPHashTable<Orden>();
 	private String nombre, email, pw;
 	private int cc;
 	private long tel;
 	
+	
+	public QPHashTable<Orden> getOrdenes() {
+		return ordenes;
+	}
+	public void setOrdenes(QPHashTable<Orden> ordenes) {
+		this.ordenes = ordenes;
+	}
 	public String getPw() {
 		return pw;
 	}
@@ -65,6 +74,9 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 	}
 	public void agregarFactura(Factura factura) {
 		facturas.insert(factura);
+	}
+	public void agregarOrden(Orden orden, String key) {
+		ordenes.insert(orden, key);
 	}
 	@Override
 	public String toString() {
