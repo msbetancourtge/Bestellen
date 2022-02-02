@@ -9,6 +9,7 @@ public class Factura implements Serializable, Comparable<Factura>{
 	
 	private int id, total;
 	private Usuario cliente;
+	private Restaurante restaurante;
 	private LinkedList<Plato> compraPlatos = new LinkedList<>();
 	private LinkedList<Bebida> compraBebidas = new LinkedList<>();
 	
@@ -42,23 +43,32 @@ public class Factura implements Serializable, Comparable<Factura>{
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
 	}
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
 	public Factura() {
 	}
 	
-	public Factura(Usuario cliente, int id, int total, LinkedList<Plato> compraPlatos, LinkedList<Bebida> compraBebidas) {
+	public Factura(Usuario cliente, Restaurante rest, int id, int total, LinkedList<Plato> compraPlatos, LinkedList<Bebida> compraBebidas) {
 		super();
 		this.cliente = cliente;
 		this.id = id;
 		this.total = total;
 		this.compraPlatos = compraPlatos;
 		this.compraBebidas = compraBebidas;
+		this.restaurante = rest;
 	}
-	public void print() {
-		this.print();
+	public String printUser() {
+		
+		return "Restaurante: \n" + restaurante.getNombre() + "\nId de la Factura: " + (getId()+1) + "\nCompra:\n" + compraPlatos.toString() + '\n' + compraBebidas.toString() + '\n' + "Total: " + getTotal() + '\n';
+		
 	}
 	@Override
 	public String toString() {
-			return "Info Cliente: \n" + cliente.toString() + "\nId de la Factura: " + getId() + '\n' + "Total: " + getTotal() + '\n';
+			return "Info Cliente: \n" + cliente.toString() + "\nId de la Factura: " + (getId()+1) + "\nTotal: " + getTotal() + '\n';
 	}
 	@Override
 	public int compareTo(Factura o) {

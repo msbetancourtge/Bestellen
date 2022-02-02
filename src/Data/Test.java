@@ -54,13 +54,14 @@ public class Test {
 		AVLTree<Usuario> Usuarios = new AVLTree<Usuario>();
 
 		//Restaurantes
-		for (int i=0; i<5000; i++) {
+		for (int i=0; i<500; i++) {
 			int palabra = 10, descrip = 60, minp = 50, maxp=500;
 		    Random random = new Random();
 		    String nombreRestaurante = palabra(random, palabra);
 		    String direccion = palabra(random, descrip);
+		    String pass = palabra(random, palabra);
 		    
-		    Restaurante restaurante1 = new Restaurante(Restaurantes.getSize(), nombreRestaurante, direccion);
+		    Restaurante restaurante1 = new Restaurante(Restaurantes.getSize(), nombreRestaurante, direccion, pass);
 			Restaurantes.insert(restaurante1);
 		    
 		    for (int j=0; j<150; j++) {
@@ -83,11 +84,12 @@ public class Test {
 		}
 		
 		//Usuarios
-		for (int i=0; i<5000; i++) {
-			int palabra = 12, e = 10, dominio = 10;
+		for (int i=0; i<500; i++) {
+			int palabra = 12, e = 10, dominio = 6;
 		    Random random = new Random();
 		    String nombre = palabra(random, palabra);
 		    String email = email(random, e, dominio);
+		    String pass = palabra(random, e);
 		    
 		    int i1 = 10000000;
 		    int i2 = 1111111111;
@@ -95,7 +97,7 @@ public class Test {
 		    long l1 = 3000000000L;
 		    long l2 = 3209999999L;
 		    long telefono = l1 + (long) (Math.random() * (l2 - l1));
-		    Usuario cliente = new Usuario(nombre,email,cedula,telefono);
+		    Usuario cliente = new Usuario(nombre,email,cedula,telefono, pass);
 			Usuarios.insert(cliente);
 
 		}

@@ -11,12 +11,18 @@ public class Restaurante implements Serializable, Comparable<Restaurante>{
 private static final long serialVersionUID = 1L;
 
 private int id;
-private String nombre;
-private String direccion;
+private String nombre, direccion, pw;
 public LinkedList<Plato> platos = new LinkedList<>();
 public LinkedList<Bebida> bebidas = new LinkedList<>();
 public AVLTree<Factura> facturas = new AVLTree<Factura>();
 
+
+public String getPw() {
+	return pw;
+}
+public void setPw(String pw) {
+	this.pw = pw;
+}
 public int getId() {
 	return id;
 }
@@ -54,19 +60,21 @@ public void setBebidas(LinkedList<Bebida> bebidas) {
 	this.bebidas = bebidas;
 }
 
-public Restaurante(int id, String nombre, String direccion, LinkedList<Plato> platos, LinkedList<Bebida> bebidas) {
+public Restaurante(int id, String nombre, String direccion, LinkedList<Plato> platos, LinkedList<Bebida> bebidas, String pw) {
 	super();
 	this.id=id;
 	this.nombre = nombre;
 	this.direccion = direccion;
 	this.platos = platos;
 	this.bebidas = bebidas;
+	this.pw = pw;
 }
-public Restaurante(int id, String nombre, String direccion) {
+public Restaurante(int id, String nombre, String direccion, String pw) {
 	super();
 	this.id=id;
 	this.nombre = nombre;
 	this.direccion = direccion;
+	this.pw = pw;
 }
 public void crearPlato(String nombre, String descripcion, int precio) {
 	Plato nuevo = new Plato(nombre,descripcion,precio);
@@ -76,30 +84,20 @@ public void crearBebida(String nombre, String descripcion, int precio, boolean a
 	Bebida nuevo = new Bebida(nombre, descripcion, precio, alcohol);
 	bebidas.add(nuevo);	
 }
-
 public Plato eleccionPlatos() {
 
 	@SuppressWarnings("resource")
 	Scanner scan = new Scanner(System.in);
 	Plato seleccion = new Plato();
-	if(this.platos.size() > 0) {
 		for (int i = 0; i < this.platos.size(); i++) {
-			System.out.println();
-			System.out.println(i+1 +". "+this.platos.get(i).toString());
+			System.out.println(i+1 +". "+this.platos.get(i).toString() + '\n');
 		}
 		int selec = scan.nextInt();
 		if (selec <=this.platos.size()) seleccion = this.platos.get(selec-1);
 		else{
-			System.out.println("\nElección Inválida");
+			System.out.println("\n*******Elección Inválida*******\n");
 			eleccionPlatos();
 		}
-	}else {
-			System.out.println("\nAún no hay platos en este restaurante");
-			System.out.println("\n***Presione 1 para volver al menú inicial***\n");
-			int regresar = scan.nextInt ();
-			if(regresar == 1 ) Bestellen.menuPrincipal();
-			else invalido();
-	}
 	return seleccion;
 }
 
@@ -108,24 +106,15 @@ public Bebida eleccionBebidas() {
 	@SuppressWarnings("resource")
 	Scanner scan = new Scanner(System.in);
 	Bebida seleccion = new Bebida();
-	if(this.bebidas.size() > 0) {
 		for (int i = 0; i < this.bebidas.size(); i++) {
-			System.out.println();
-			System.out.println(i+1 +". "+this.bebidas.get(i).toString());
+			System.out.println(i+1 +". "+this.bebidas.get(i).toString() + '\n');
 		}
 		int selec = scan.nextInt();
 		if (selec <=this.bebidas.size()) seleccion = this.bebidas.get(selec-1);
 		else{
-			System.out.println("\nElección Inválida");
+			System.out.println("\n*******Elección Inválida*******\n");
 			eleccionBebidas();
 		}	
-	}else {
-			System.out.println("\nAún no hay platos en este restaurante");
-			System.out.println("\n***Presione 1 para volver al menú inicial***\n");
-			int regresar = scan.nextInt ();
-			if(regresar == 1 ) Bestellen.menuPrincipal();
-			else invalido();
-	}
 	return seleccion;
 }
 
@@ -146,16 +135,12 @@ public void generarOrden(Usuario user) {
 			ordenBebidas.add(eleccionBebidas());
 		}
 		Orden pedido = new Orden(user, ordenPlatos, ordenBebidas);
-		Factura temp = pedido.facturar(facturas.getSize(), user);
+		Factura temp = pedido.facturar(facturas.getSize(), user, this);
 		facturas.insert(temp);
 		user.agregarFactura(temp);
 }
 	public void verFacturas() {
 		facturas.print();
-	}
-	public void invalido() {
-		System.out.println("\n--Opción no válida--\n");
-		Bestellen.menuPrincipal();
 	}
 	@Override
 	public String toString() {

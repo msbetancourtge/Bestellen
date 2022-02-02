@@ -9,11 +9,16 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 
 	private AVLTree<Factura> facturas = new AVLTree<Factura>();
 	
-	private String nombre, email;
+	private String nombre, email, pw;
 	private int cc;
 	private long tel;
 	
-	
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 	public AVLTree<Factura> getFacturas() {
 		return facturas;
 	}
@@ -52,11 +57,12 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 		setCc(cc);
 		setTel(0000000000);
 	}
-	public Usuario(String nombre, String email, int cc, long tel) {
+	public Usuario(String nombre, String email, int cc, long tel, String pw) {
 		setNombre(nombre);
 		setEmail(email);
 		setCc(cc);
 		setTel(tel);
+		setPw(pw);
 	}
 	public void agregarFactura(Factura factura) {
 		facturas.insert(factura);
