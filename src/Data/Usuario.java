@@ -11,10 +11,16 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 	private AVLTree<Factura> facturas = new AVLTree<Factura>();
 	private QPHashTable<Orden> ordenes = new QPHashTable<Orden>();
 	private String nombre, email, pw;
-	private int cc;
+	private int cc, id;
 	private long tel;
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public QPHashTable<Orden> getOrdenes() {
 		return ordenes;
 	}
@@ -65,7 +71,7 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 		setCc(cc);
 		setTel(0000000000);
 	}
-	public Usuario(String nombre, String email, int cc, long tel, String pw) {
+	public Usuario(String nombre, String email, int cc, long tel, String pw, int id) {
 		setNombre(nombre);
 		setEmail(email);
 		setCc(cc);
@@ -73,7 +79,7 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 		setPw(pw);
 	}
 	
-	public Usuario(String nombre, String email, int cc, long tel, String pw, QPHashTable<Orden> ordenes) {
+	public Usuario(String nombre, String email, int cc, long tel, String pw, QPHashTable<Orden> ordenes,int id) {
 		setNombre(nombre);
 		setEmail(email);
 		setCc(cc);

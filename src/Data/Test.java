@@ -157,7 +157,7 @@ private static TreeNode <Usuario> findUser(TreeNode<Usuario> root, int cc){
 		    long l2 = 3209999999L;
 		    long telefono = l1 + (long) (Math.random() * (l2 - l1));
 		    QPHashTable<Orden> ordenes = new QPHashTable<Orden>();
-		    Usuario cliente = new Usuario(nombre,email,cedula,telefono, pass, ordenes);
+		    Usuario cliente = new Usuario(nombre,email,cedula,telefono, pass, ordenes, Usuarios.getSize());
 			Usuarios.insert(cliente);
 
 		}

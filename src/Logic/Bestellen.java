@@ -119,7 +119,7 @@ public class Bestellen {
 			}
 		}else {
 			System.out.println("\n******Nada para almacenar******\n");
-			System.exit(0);
+			//System.exit(0);
 		}
 		
 		if(Usu.getSize()>0) {
@@ -139,7 +139,7 @@ public class Bestellen {
 			}
 		}else {
 			System.out.println("\n******Nada para almacenar******\n");
-			System.exit(0);
+			//System.exit(0);
 		}
 		System.out.println("\n---Información almacenada---\n");
 	}
@@ -699,7 +699,7 @@ public class Bestellen {
 		int cc = scan.nextInt();
 		System.out.println("Ahgrega tu número de teléfono");
 		long tel = scan.nextLong();
-		Usuario cliente =new Usuario(nombre, email, cc, tel, pw);
+		Usuario cliente =new Usuario(nombre, email, cc, tel, pw, Usuarios.getSize());
 		Usuarios.insert(cliente);
 		actualizarArchivo(Restaurantes, Usuarios);
 		menuUsuario(cliente);
@@ -716,7 +716,7 @@ public class Bestellen {
 		int cc = scan.nextInt();
 		System.out.println("Teléfono del Cliente");
 		long tel = scan.nextLong();
-		Usuario cliente =new Usuario(nombre, email, cc, tel, pw);
+		Usuario cliente =new Usuario(nombre, email, cc, tel, pw, Usuarios.getSize());
 		Usuarios.insert(cliente);
 		actualizarArchivo(Restaurantes, Usuarios);
 		menuAdmin();

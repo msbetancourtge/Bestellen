@@ -7,7 +7,11 @@ import java.io.*;
 import Data.*;
 public class Bestellen2 {
 	
-	String pass = "Bestellen";
+private static final String pass = "Bestellen";
+	
+	public static String getPass() {
+		return pass;
+	}
 	
 	AVLTree<Restaurante> Restaurantes = new AVLTree<Restaurante>();
 	AVLTree<Usuario> Usuarios = new AVLTree<Usuario>();
@@ -203,7 +207,7 @@ public class Bestellen2 {
 	}
 	public void crearUsuario(String nombre,String email,int cc,int tel,String pw) {		
             
-		Usuario cliente =new Usuario(nombre, email, cc, tel, pw);
+		Usuario cliente =new Usuario(nombre, email, cc, tel, pw, Usuarios.getSize());
 		Usuarios.insert(cliente);
 		actualizarArchivo(Restaurantes, Usuarios);
 	}

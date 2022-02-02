@@ -4,24 +4,65 @@
  */
 package Logic;
 
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import javax.swing.JOptionPane;
 
 import Data.Restaurante;
 import Data.Usuario;
 import Structures.AVLTree;
+import Structures.TreeNode;
 
 /**
  *
  * @author mrdan
  */
 public class loguin extends javax.swing.JFrame {
-
+	
     int tipoMenu = 0;
-    String passAdm = Bestellen.getPass();
-    Bestellen thing = new Bestellen();
-    AVLTree<Restaurante> restTemp = thing.getRestaurantes();
-    AVLTree<Usuario> userTemp = thing.getUsuarios();
+    String passAdm = Bestellen2.getPass();
+    Bestellen2 app = new Bestellen2();
+    AVLTree<Restaurante> restTemp = new AVLTree<Restaurante>();
+    AVLTree<Usuario> userTemp = new AVLTree<Usuario>();
     
+    public void cargarDatos(){
+		try {
+			ObjectInputStream lectura = new ObjectInputStream(new FileInputStream("restaurantes.dat"));
+			@SuppressWarnings("unchecked")
+			AVLTree<Restaurante> temp = (AVLTree<Restaurante>) lectura.readObject() ;
+			lectura.close();
+			
+			restTemp = temp;
+		}
+		catch(ClassNotFoundException e) {
+			System.out.println("Clase no encontrada");
+		}
+		catch(EOFException e) {
+			System.out.println("No hay más datos");
+		}
+		catch(IOException e){
+		}
+		
+		try {
+			ObjectInputStream lectura = new ObjectInputStream(new FileInputStream("usuarios.dat"));
+			@SuppressWarnings("unchecked")
+			AVLTree<Usuario> temp = (AVLTree<Usuario>) lectura.readObject();
+			lectura.close();
+			
+			userTemp = temp;
+		}
+		catch(ClassNotFoundException e) {
+			System.out.println("Clase no encontrada");
+		}
+		catch(EOFException e) {
+			System.out.println("No hay más datos");
+		}
+		catch(IOException e){
+		}
+	}
     
     public loguin() {
         initComponents();
@@ -35,6 +76,8 @@ public class loguin extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	
+    	cargarDatos();
 
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -92,9 +135,11 @@ public class loguin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(tipoMenu == 1){
+        
+    	if(tipoMenu == 1){
         	jTextField1.setVisible(false);
         	 jTextField1.revalidate();
         	 jTextField1.repaint();
@@ -113,8 +158,12 @@ public class loguin extends javax.swing.JFrame {
         }
         if(tipoMenu == 2){
         	
-        	String pwTemp=thing.findUser(userTemp.getRoot(), Integer.parseInt(jTextField1.getText())).getData().getPw();
+        	System.out.println(Integer.parseInt(jTextField1.getText()));
+        	System.out.println(userTemp.getRoot().getData().getPw());
         	
+        	String pwTemp=app.findUser(userTemp.getRoot(), Integer.parseInt(jTextField1.getText())).getData().getPw();
+        	
+        	System.out.println(pwTemp);
             if(new String(this.jPasswordField1.getPassword()).equals(pwTemp)){
                 MenuPrincipal dd = new MenuPrincipal();
                 dd.setVisible(true);
@@ -126,7 +175,7 @@ public class loguin extends javax.swing.JFrame {
         }
         if(tipoMenu == 3){
         	
-        	String pwTemp=thing.find(restTemp.getRoot(), Integer.parseInt(jTextField1.getText())).getData().getPw();
+        	String pwTemp=app.find(restTemp.getRoot(), Integer.parseInt(jTextField1.getText())).getData().getPw();
         	
             if(new String(this.jPasswordField1.getPassword()).equals(pwTemp)){
                 MenuPrincipal dd = new MenuPrincipal();
