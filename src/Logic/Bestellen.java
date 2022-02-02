@@ -158,6 +158,11 @@ public class Bestellen {
 			break;
 		}
 		case 4:{
+			registroUsuario();
+			break;
+		}
+		
+		case 5:{
 		actualizarArchivo(Restaurantes, Usuarios);
 		System.exit(0);
 		}
@@ -171,7 +176,8 @@ public class Bestellen {
 		System.out.println("Opcion 1: Soy un Administrador");
 		System.out.println("Opcion 2: Soy un Restaurante");
 		System.out.println("Opcion 3: Soy un Cliente");
-		System.out.println("Opcion 4: Salir y guardar\n");
+		System.out.println("Opcion 4: Quiero Registrarme");
+		System.out.println("Opcion 5: Salir y guardar\n");
 		if (entradaEscaner.hasNextInt()) {
 			int opcion = entradaEscaner.nextInt();
 			return opcion;
@@ -676,6 +682,23 @@ public class Bestellen {
 		int newPrice = entradaEscaner.nextInt();
 		bebida.setPrecio(newPrice);
 		System.out.println("\nPrecio actualizado. Nuevo precio: " + bebida.getPrecio());
+	}
+	public void registroUsuario() {		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("¿Cuál es tu nombre?");
+		String nombre = scan.nextLine();
+		System.out.println("¿Cuál es tu Email?");
+		String email = scan.nextLine();
+		System.out.println("Crea una Contraseña");
+		String pw = scan.nextLine();
+		System.out.println("¿Cuál es tu cédula?");
+		int cc = scan.nextInt();
+		System.out.println("Ahgrega tu número de teléfono");
+		long tel = scan.nextLong();
+		Usuario cliente =new Usuario(nombre, email, cc, tel, pw);
+		Usuarios.insert(cliente);
+		actualizarArchivo(Restaurantes, Usuarios);
+		menuUsuario(cliente);
 	}
 	public void crearUsuario() {		
 		Scanner scan = new Scanner(System.in);
