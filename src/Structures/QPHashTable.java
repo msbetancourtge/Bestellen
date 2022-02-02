@@ -19,11 +19,11 @@ public class QPHashTable<T extends Serializable> implements Serializable{
 		doClear();
 	}
 	public boolean insert(T data, String key) {
-		size++;
+		
 		int curr = findPos(key);
 		if (isActive(curr)) return false;
 		array [curr] = new HashEntry<>(data, true, key);
-		
+		size++;
 		if(++ocupado>array.length/2) rehash();
 		return true;
 	}
@@ -41,11 +41,11 @@ public class QPHashTable<T extends Serializable> implements Serializable{
 	
 	private int findPos(String key) {
 		int offset = 1;
-		int curr = hashing(key, size);
+		int curr = hashing(key, size+1);
 		
 		while(array[curr] !=null && !array[curr].key.equals(key)) {
 			curr+=offset;
-			offset=(int) Math.pow(offset, 2) ;
+			offset+=2;
 			if(curr>=array.length) curr-=array.length;
 		}
 		return curr;

@@ -106,7 +106,7 @@ private static TreeNode <Usuario> findUser(TreeNode<Usuario> root, int cc){
 		long initR = System.currentTimeMillis();
 
 		//Restaurantes
-		for (int i=0; i<100000; i++) {
+		for (int i=0; i<100; i++) {
 			int palabra = 10, descrip = 60, minp = 50, maxp=500;
 		    Random random = new Random();
 		    String nombreRestaurante = palabra(random, palabra);
@@ -142,7 +142,7 @@ private static TreeNode <Usuario> findUser(TreeNode<Usuario> root, int cc){
 		long totalU=0;
 		long initU = System.currentTimeMillis();
 		//Usuarios
-		for (int i=0; i<100000; i++) {
+		for (int i=0; i<100; i++) {
 			int palabra = 12, e = 10, dominio = 6;
 		    Random random = new Random();
 		    String nombre = palabra(random, palabra);
@@ -173,14 +173,12 @@ private static TreeNode <Usuario> findUser(TreeNode<Usuario> root, int cc){
 		for (int i=0; i<40000; i++) {
 
 		    Random random = new Random();
-		    int rand = random.nextInt(Restaurantes.getSize()-1);
+		    int rand = random.nextInt(Restaurantes.getSize());
 		    Restaurante restTemp = find(Restaurantes.getRoot(), rand).getData();
-		    Random random2 = new Random();
-		    int rand2 = random2.nextInt(ccs.size()-1);
+		    int rand2 = random.nextInt(ccs.size());
 		    int ccTemp = ccs.get(rand2);
 		    Usuario userTemp = findUser(Usuarios.getRoot(), ccTemp).getData();
-		    Random random3 = new Random();
-		    int personas = random3.nextInt(4);
+		    int personas = random.nextInt(4);
 		    
 		    generarOrden(userTemp, restTemp, restTemp.facturas, personas);
 
