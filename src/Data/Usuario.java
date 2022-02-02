@@ -8,7 +8,6 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 	private static final long serialVersionUID = 1L;
 
 	private AVLTree<Factura> facturas = new AVLTree<Factura>();
-	
 	private String nombre, email, pw;
 	private int cc;
 	private long tel;

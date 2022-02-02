@@ -30,7 +30,6 @@ public class Orden {
 		this.platos = platos;
 		this.bebidas = bebidas;
 	}
-	
 	public Factura facturar(int id, Usuario cliente, Restaurante restaurante) {
 		
 		int total=0;	

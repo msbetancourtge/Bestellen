@@ -399,7 +399,7 @@ public class Bestellen {
 			}
 		}else {
 			System.out.println("\n******Aún no hay restaurantes creados******\n");
-			if (user==null)menuRestauranteAdminInicial();
+			if (user==null)menuAdmin();
 			else if (user!=null) menuUsuario(user);
 		}
 		//entradaEscaner.close();
@@ -849,7 +849,7 @@ public class Bestellen {
 			}else invalido();
 		}else {
 			System.out.println("\n******Aún no hay usuarios creados******\n");
-			menu();
+			menuAdmin();
 		}
 		//entradaEscaner.close();
 	}

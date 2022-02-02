@@ -140,7 +140,7 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 	}
 	public void print() {
 		if (isEmpty())
-			System.out.println("\n-------No hay información almacenada-------");
+			System.out.println("\n-------No hay información almacenada-------\n");
 		else print(root);
 	}
 	private void print(TreeNode<T> root) {

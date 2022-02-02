@@ -62,7 +62,6 @@ public class Factura implements Serializable, Comparable<Factura>{
 		this.restaurante = rest;
 	}
 	public String printUser() {
-		
 		return "Restaurante: \n" + restaurante.getNombre() + "\nId de la Factura: " + (getId()+1) + "\nCompra:\n" + compraPlatos.toString() + '\n' + compraBebidas.toString() + '\n' + "Total: " + getTotal() + '\n';
 		
 	}
