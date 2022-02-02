@@ -3,7 +3,7 @@ package Logic;
 
 public class Administrar extends javax.swing.JFrame {
 
-    private Bestellen2 apli;
+    private Bestellen2 app;
     private int opcion;
 
     public Administrar() {
@@ -11,7 +11,7 @@ public class Administrar extends javax.swing.JFrame {
     }
 
     Administrar(Bestellen2 app, int opcion) {
-        apli = app;
+        this.app = app;
         this.opcion = opcion;
         initComponents();
         
@@ -71,14 +71,14 @@ public class Administrar extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        if(opcion == 1){
-            MenuParaIngresarDatos dd = new MenuParaIngresarDatos(apli);
+        if(opcion == 2){
+            MenuParaIngresarDatos dd = new MenuParaIngresarDatos(app);
             dd.setTipoDato(1);
             dd.ingresarDatos();
             dd.setVisible(true);
             this.setVisible(false);
-        }else if(opcion == 2){
-            MenuParaIngresarDatos dd = new MenuParaIngresarDatos(apli);
+        }else if(opcion == 1){
+            MenuParaIngresarDatos dd = new MenuParaIngresarDatos(app);
             dd.setTipoDato(10);
             dd.ingresarDatos();
             dd.setVisible(true);
@@ -87,7 +87,9 @@ public class Administrar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+        VerListas dd = new VerListas(app,opcion);
+        dd.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     

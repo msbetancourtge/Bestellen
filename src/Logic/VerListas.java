@@ -19,7 +19,9 @@ public class VerListas extends javax.swing.JFrame {
         choice1.removeAll();
         
         if(opcion == 1){
-            
+            listaClientes();
+        }else if(opcion == 2){
+            listaRestaurantes();
         }else if(opcion == 3){
             listaBebidas();
         }else if(opcion == 2){
