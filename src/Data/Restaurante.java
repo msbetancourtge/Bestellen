@@ -67,6 +67,15 @@ public Restaurante(int id, String nombre, String direccion, LinkedList<Plato> pl
 	this.bebidas = bebidas;
 	this.pw = pw;
 }
+public Restaurante(int id, String nombre, String direccion, String pw, AVLTree<Factura> facturas) {
+	super();
+	this.id=id;
+	this.nombre = nombre;
+	this.direccion = direccion;
+	this.pw = pw;
+	this.facturas=facturas;
+}
+
 public Restaurante(int id, String nombre, String direccion, String pw) {
 	super();
 	this.id=id;
@@ -74,6 +83,7 @@ public Restaurante(int id, String nombre, String direccion, String pw) {
 	this.direccion = direccion;
 	this.pw = pw;
 }
+
 public void crearPlato(String nombre, String descripcion, int precio) {
 	Plato nuevo = new Plato(nombre,descripcion,precio);
 	platos.add(nuevo);
@@ -132,7 +142,7 @@ public void generarOrden(Usuario user) {
 			System.out.println("Elija una bebida del menú para el comensal: " + k);
 			ordenBebidas.add(eleccionBebidas());
 		}
-		Orden pedido = new Orden(user, ordenPlatos, ordenBebidas);
+		Orden pedido = new Orden(this, user, ordenPlatos, ordenBebidas);
 		Factura temp = pedido.facturar(facturas.getSize(), user, this);
 		facturas.insert(temp);
 		user.agregarFactura(temp);

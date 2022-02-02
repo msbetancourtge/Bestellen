@@ -1,7 +1,10 @@
 package Structures;
 
-public class HashEntry <T>{
-	
+import java.io.Serializable;
+
+public class HashEntry <T> implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	public T data;
 	public String key;
 	public boolean isActive;

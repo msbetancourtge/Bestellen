@@ -1,11 +1,26 @@
 package Data;
 
+import java.io.Serializable;
+
 import Structures.LinkedList;
 
-public class Orden {
+public class Orden implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Usuario cliente;
+	Restaurante rest;
 	public LinkedList<Plato> platos = new LinkedList<>();
 	public LinkedList<Bebida> bebidas = new LinkedList<>();
+	
+	
+	public Restaurante getRest() {
+		return rest;
+	}
+	public void setRest(Restaurante rest) {
+		this.rest = rest;
+	}
 	public Usuario getCliente() {
 		return cliente;
 	}
@@ -24,11 +39,12 @@ public class Orden {
 	public void setBebidas(LinkedList<Bebida> bebidas) {
 		this.bebidas = bebidas;
 	}
-	public Orden(Usuario cliente, LinkedList<Plato> platos, LinkedList<Bebida> bebidas) {
+	public Orden(Restaurante rest, Usuario cliente, LinkedList<Plato> platos, LinkedList<Bebida> bebidas) {
 		super();
 		this.cliente = cliente;
 		this.platos = platos;
 		this.bebidas = bebidas;
+		this.rest=rest;
 	}
 	public Factura facturar(int id, Usuario cliente, Restaurante restaurante) {
 		
@@ -39,9 +55,13 @@ public class Orden {
 		for (int i=0; i<bebidas.size(); i++) {
 			total += bebidas.get(i).getPrecio();
 		}
-		System.out.println("Total: \n" + total);
+		System.out.println( "\nUsuario: " + cliente.getCc() + "\nRestaurante: "+ restaurante.getId() + "Total: \n" + total);
 		Factura factura = new Factura(cliente, restaurante, id, total, platos, bebidas);
 		return factura;
+	}
+	@Override
+	public String toString() {
+		return  "\nRESTAURANTE: " + rest + "\n------- PLATOS -------\n" + platos.toString() + "\n------- BEBIDAS -------\n" + bebidas.toString() +'\n';
 	}
 	
 	

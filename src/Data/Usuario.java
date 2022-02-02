@@ -72,6 +72,16 @@ public class Usuario implements Serializable, Comparable<Usuario>{
 		setTel(tel);
 		setPw(pw);
 	}
+	
+	public Usuario(String nombre, String email, int cc, long tel, String pw, QPHashTable<Orden> ordenes) {
+		setNombre(nombre);
+		setEmail(email);
+		setCc(cc);
+		setTel(tel);
+		setPw(pw);
+		setOrdenes(ordenes);
+	}
+	
 	public void agregarFactura(Factura factura) {
 		facturas.insert(factura);
 	}

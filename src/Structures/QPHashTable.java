@@ -1,7 +1,11 @@
 package Structures;
 
-public class QPHashTable <T>{
+import java.io.Serializable;
 
+public class QPHashTable<T extends Serializable> implements Serializable{
+
+
+	private static final long serialVersionUID = 1L;
 	private HashEntry<T> [] array;
 	private int size, ocupado;
 	private static final int DEFAULT_TABLE_SIZE = 101;
@@ -15,10 +19,10 @@ public class QPHashTable <T>{
 		doClear();
 	}
 	public boolean insert(T data, String key) {
+		size++;
 		int curr = findPos(key);
 		if (isActive(curr)) return false;
 		array [curr] = new HashEntry<>(data, true, key);
-		size++;
 		
 		if(++ocupado>array.length/2) rehash();
 		return true;
@@ -94,6 +98,13 @@ public class QPHashTable <T>{
 		
 		return hashVal;
 		
+	}
+	
+	public void printAll() {
+		for(HashEntry<T> data:array) {
+			System.out.println("\n# de orden: "+data.key+ '\n');
+			System.out.println(data.data.toString());
+		}
 	}
 	
 	private void allocateArray(int size) {

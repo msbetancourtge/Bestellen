@@ -93,7 +93,7 @@ public class AVLTree<T extends Comparable<? super T>> implements Serializable  {
 	private TreeNode<T> insert(TreeNode<T> root, T data){
 		
 		if (root==null) {
-			System.out.println("Insertado el valor: " + size);
+			//System.out.println("Insertado el valor: " + size);
 			return new TreeNode<T> (data);}
 		
 		int compare = data.compareTo(root.data);

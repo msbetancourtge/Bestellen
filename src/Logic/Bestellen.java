@@ -68,7 +68,7 @@ public class Bestellen {
 				System.out.println("No hay más datos");
 			}
 			catch(IOException e){
-				System.out.println("Error");
+				System.out.println("Error-Restaurante");
 			}
 		}else {
 			System.out.println("\n******Nada para almacenar******\n");
@@ -87,7 +87,7 @@ public class Bestellen {
 				System.out.println("No hay más datos");
 			}
 			catch(IOException e){
-				System.out.println("Error");
+				System.out.println("Error-Usuario");
 			}
 		}else {
 			System.out.println("\n******Nada para almacenar******\n");
@@ -243,13 +243,6 @@ public class Bestellen {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	public void menuAdmin() {
 		@SuppressWarnings("resource")
 		Scanner entradaEscaner = new Scanner (System.in);
@@ -361,7 +354,6 @@ public class Bestellen {
 			break;
 		}
 		case 7: {
-			//actualizarArchivo(Restaurantes, Usuarios);
 			menuAdmin();
 			break;
 			}
@@ -825,6 +817,10 @@ public class Bestellen {
 		return root;
 
 	}
+	
+	public void verPedidos(Usuario user) {
+		user.getOrdenes().printAll();
+	}
 
 	public void seleccionarUsuario() {
 		Scanner entradaEscaner = new Scanner (System.in);
@@ -1080,8 +1076,9 @@ public class Bestellen {
 		System.out.println("\n\\\\\\\\\\\\\\\\ seleccione una opción ///////\n");
 		System.out.println("Opcion 1: Editar mis datos");
 		System.out.println("Opcion 2: Ver mis Facturas");
-		System.out.println("Opcion 3: Ver Restaurantes Disponibles");
-		System.out.println("Opción 4: Salir y guardar");
+		System.out.println("Opcion 3: Ver mis Pedidos");
+		System.out.println("Opcion 4: Ver Restaurantes Disponibles");
+		System.out.println("Opción 5: Salir y guardar");
 		if (entradaEscaner.hasNextInt()) {
 			opcion = entradaEscaner.nextInt();
 			}
@@ -1098,10 +1095,14 @@ public class Bestellen {
 			break;
 		}
 		case 3:{
-			seleccionarRestaurante(user);
+			verPedidos(user);
 			break;
 		}
 		case 4:{
+			seleccionarRestaurante(user);
+			break;
+		}
+		case 5:{
 			actualizarArchivo(Restaurantes, Usuarios);
 			break;
 		}
