@@ -7,7 +7,11 @@ import java.io.*;
 import Data.*;
 public class Bestellen {
 	
-	String pass = "Bestellen";
+	private static final String pass = "Bestellen";
+	
+	public static String getPass() {
+		return pass;
+	}
 	
 	AVLTree<Restaurante> Restaurantes = new AVLTree<Restaurante>();
 	AVLTree<Usuario> Usuarios = new AVLTree<Usuario>();
@@ -813,7 +817,7 @@ public class Bestellen {
 		}
 		
 	}
-	private TreeNode <Restaurante> find(TreeNode<Restaurante> root, int pos){
+	public TreeNode <Restaurante> find(TreeNode<Restaurante> root, int pos){
 		if (root==null) return root;
 		int compare = pos - root.getData().getId();
 		if (compare < 0) return find(root.getLeft(), pos);
@@ -822,7 +826,7 @@ public class Bestellen {
 		return root;
 
 	}
-	private TreeNode <Usuario> findUser(TreeNode<Usuario> root, int cc){
+	public TreeNode <Usuario> findUser(TreeNode<Usuario> root, int cc){
 		if (root==null) return root;
 		int compare = cc - root.getData().getCc();
 		if (compare < 0) return findUser(root.getLeft(), cc);
@@ -831,7 +835,7 @@ public class Bestellen {
 		return root;
 
 	}
-	private TreeNode <Factura> findFactura(TreeNode<Factura> root, int pos){
+	public TreeNode <Factura> findFactura(TreeNode<Factura> root, int pos){
 		if (root==null) return root;
 		int compare = pos - root.getData().getId();
 		if (compare < 0) return findFactura(root.getLeft(), pos);

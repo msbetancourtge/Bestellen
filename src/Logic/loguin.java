@@ -6,6 +6,10 @@ package Logic;
 
 import javax.swing.JOptionPane;
 
+import Data.Restaurante;
+import Data.Usuario;
+import Structures.AVLTree;
+
 /**
  *
  * @author mrdan
@@ -13,7 +17,12 @@ import javax.swing.JOptionPane;
 public class loguin extends javax.swing.JFrame {
 
     int tipoMenu = 0;
-    char[] contraseñaAdmin  = {'b','e','s','t','e','l','l','e','n'};
+    String passAdm = Bestellen.getPass();
+    Bestellen thing = new Bestellen();
+    AVLTree<Restaurante> restTemp = thing.getRestaurantes();
+    AVLTree<Usuario> userTemp = thing.getUsuarios();
+    
+    
     public loguin() {
         initComponents();
     }
@@ -86,20 +95,27 @@ public class loguin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(tipoMenu == 1){
-            if(jPasswordField1.getPassword().toString().equals( contraseñaAdmin.toString())){
+        	jTextField1.setVisible(false);
+        	 jTextField1.revalidate();
+        	 jTextField1.repaint();
+        	//System.out.println(new String(this.jPasswordField1.getPassword()));
+            if(new String(this.jPasswordField1.getPassword()).equals(passAdm)){
                 MenuPrincipal dd = new MenuPrincipal();
                 dd.setVisible(true);
                 this.setVisible(false);
             }else{
                 System.out.println(tipoMenu);        
                 System.out.println(jPasswordField1.getPassword().toString());
-                System.out.println(contraseñaAdmin.toString());
+                System.out.println(new String(this.jPasswordField1.getPassword()).equals(passAdm));
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
 
             } 
         }
         if(tipoMenu == 2){
-            if((this.jPasswordField1.getPassword()).toString().equals(contraseñaAdmin)){
+        	
+        	String pwTemp=thing.findUser(userTemp.getRoot(), Integer.parseInt(jTextField1.getText())).getData().getPw();
+        	
+            if(new String(this.jPasswordField1.getPassword()).equals(pwTemp)){
                 MenuPrincipal dd = new MenuPrincipal();
                 dd.setVisible(true);
                 this.setVisible(false);
@@ -109,7 +125,10 @@ public class loguin extends javax.swing.JFrame {
             } 
         }
         if(tipoMenu == 3){
-            if((this.jPasswordField1.getPassword()).toString().equals(contraseñaAdmin.toString())){
+        	
+        	String pwTemp=thing.find(restTemp.getRoot(), Integer.parseInt(jTextField1.getText())).getData().getPw();
+        	
+            if(new String(this.jPasswordField1.getPassword()).equals(pwTemp)){
                 MenuPrincipal dd = new MenuPrincipal();
                 dd.setVisible(true);
                 this.setVisible(false);
